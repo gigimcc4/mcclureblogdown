@@ -1,0 +1,23 @@
+---
+title: "Jeanne McClure"
+image: "img/headshot1.png"
+links: 
+- label: LinkedIn
+  url: "https://www.linkedin.com/in/jeannemcclure/"
+- label: Twitter
+  url: "https://twitter.com/STEAM__ON"
+- label: Github
+  url: "https://github.com/gigimcc4"
+output:
+  postcards::jolla
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+```
+
