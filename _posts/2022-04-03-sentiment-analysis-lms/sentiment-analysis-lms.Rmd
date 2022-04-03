@@ -1,0 +1,624 @@
+---
+title: "LMS Twitter Sentiment Analysis"
+description: |
+  A Project using Twitter Data of four popular Learning Management Systems
+author:
+  - name: Jeanne McClure
+preview: lmstimesentiment.png
+date: 2022-02-06
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1 PURPOSE
+
+### 1a. Motivation and Focus
+
+In today's society, it is pretty normal to share your opinion about a product
+or service through Social Media platforms like Facebook, Instagram or
+Twitter. Organizations want to know public views on their products
+and services to optimize their customer base and revenue. The public
+also wants to understand public opinion before buying or using an
+organization's product or service.
+
+In public and private programs, the education of students and employees
+relies heavily on using the right *Learning Management System (LMS)* to share information and educate in K-12, University, for-profit or non-profit sectors. Today, we are in a time of uncertainty. It is more important than ever to choose the suitable LMS as you may need to "go online" at the drop of a hat or instead do I dare shutter the word - "quarantine." The investment is too significant not to understand the users' sentiments on using the most popular Learning Management Systems on the market today; Google Classroom, Canvas, Moodle, and Blackboard.
+
+One way to understand a Learning Management Systems strengths and
+weaknesses are by pulling public opinion from Twitter API to evaluate
+using an Unstructured ML approach with **Text (opinion) Mining and Sentiment Analysis**. We will assess the public sentiment of these four popular Learning Management Systems, identifying public sentiment and by asking the following questions:
+
+1.  What are the most frequent words used in reference to
+    tweets about four popular Learning Management Systems?
+
+2.  Which Learning Management System is the most popular in tweets from January 30 - February 1, 2022.  
+
+3.  How does the current sentiments in each lexicon compare between:
+
+    a.  Google Classroom
+
+    b.  Canvas
+
+    c.  Moodle
+
+    d.  Blackboard
+
+
+
+### 1b. Load Libraries
+
+Let's first load our libraries to read in packages that we will use to answer our questions. Additionally, let's set colors to use throughout and write a function to save in our Global Environment to use later with ggplot in the **MODEL** Section.
+
+```{R, message = FALSE}
+#Instal packages for wrangling
+library(dplyr)
+library(tidyverse)
+library(readr)
+library(tidyr)
+library(rtweet) 
+library(writexl)
+library(readxl)
+library(tidytext)
+library(textdata)
+
+# for visualizations
+library(ggplot2)
+library(scales)
+library(wordcloud2)
+library(gridExtra) 
+library(knitr) 
+library(kableExtra) 
+library(formattable) 
+library(yarrr)  
+library(radarchart) 
+library(igraph) 
+library(ggraph) 
+
+#Define some colors to use throughout
+my_colors <- c("#E69F00", "#56B4E9", "#009E73", "#CC79A7", "#D55E00", "#D65E00")
+
+#Customize ggplot2's default theme settings
+theme_lms <- function(aticks = element_blank(),
+                         pgminor = element_blank(),
+                         lt = element_blank(),
+                         lp = "none")
+{
+  theme(plot.title = element_text(hjust = 0.5), #Center the title
+        axis.ticks = aticks, #Set axis ticks to on or off
+        panel.grid.minor = pgminor, #Turn the minor grid lines on or off
+        legend.title = lt, #Turn the legend title on or off
+        legend.position = lp) #Turn the legend on or off
+}
+
+```
+
+# 2 METHOD
+
+### 2a. Connecting to API and pulling Data
+
+To begin, after loading the libraries, we connect to the *Twitter Resting API* and pull tweets for Google Classroom, Canvas, Blackboard, and Moodle Learning Management Systems. You will not view the codes used to connect to Twitter API as I saved them to a *get_token()* function. I use the get_token function to connect directly to Twitter's Resting API.  
+
+To know which hashtags or words to pull tweets with, I went directly to Twitter and searched the LMS names to view the results. Canvas and Blackboard were tricky since the name "Canvas" is closely associated with art and links to companies like Micheal's Craft Store, which sells different art canvas sizes for painters. Blackboard is closely associated with a Game that I was not familiar with.
+Since Twitter changes and restrictions on the dates and amount of tweets you can pull, we will write the data files to save and read in a later code chunk.
+
+```{r, eval = FALSE}
+
+#connect to Twitter API
+get_token()
+
+#PULL Google Classroom
+gc_dictionary <- c("#Google Classroom", '"Google Classroom"') 
+gctweets <- 
+gc_dictionary %>% 
+  search_tweets2(n=5000, include_rts = FALSE)
+
+#write to save
+gc_tweets <- write_xlsx(gctweets, "data/gctweets.xlsx")
+
+#PULL Canvas LMS
+canvas_dictionary <- c("#canvas", '"Canvas lms"') 
+canvastweets <- 
+ canvas_dictionary %>% 
+  search_tweets2(n=5000, include_rts = FALSE)
+
+#write to save
+canvastweets <- write_xlsx(canvastweets, "data/canvastweets.xlsx")
+
+#PULL Blackboard tweets and save as excel file
+
+bb_dictionary <- c("#blackboard lms", '"blackboard lms"') 
+blackboardtweets <- 
+ bb_dictionary %>% 
+  search_tweets2(n=5000, include_rts = FALSE)
+
+#write to save
+blackboard_tweets <- write_xlsx(blackboardtweets, "data/blackboard.xlsx")
+
+
+#PULL Moodle tweets and save as excel file
+
+moodle_dictionary <- c("#moodle lms", '"Moodle"') 
+moodletweets <- 
+ moodle_dictionary %>% 
+  search_tweets2(n=5000, include_rts = FALSE)
+
+#write to save
+moodletweets <- write_xlsx(moodletweets, "data/moodle.xlsx")
+
+```
+
+### 2b. Read and Restructure Data
++ Let's read in the previously saved LMS data for Google Classroom tweets, Blackboard tweets, Canvas tweets, and Moodle tweets. 
++ Then subset the rows and columns to pull only English language texts 
++ We will *bind* each separate data frame into one data frame named *tweets()*.
++ We will need to create a unique identifying index column for later analysis.
++ Finally, let's look at the head of our new *tweets()* data frame. 
+
+```{r, message=FALSE}
+#read in previously pulled tweets for Google Classroom, Blackboard and Canvas
+gc_tweets <- read_xlsx("data/gctweets.xlsx")
+bb_tweets <- read_xlsx("data/blackboard.xlsx")
+canvas_tweets <- read_xlsx("data/canvastweets.xlsx")
+moodle_tweets <- read_xlsx("data/moodle.xlsx")
+
+#subset rows and colums in the english language, add a column for quickly identifying the LMS software.
+gc_text <- gc_tweets %>%
+  filter(lang == "en") %>%
+  select(screen_name, created_at, text)%>%
+  mutate(lms = "Google Classroom") %>%
+  relocate(lms)
+
+
+bb_text <- bb_tweets %>%
+  filter(lang == "en") %>%
+  select(screen_name, created_at, text) %>%
+  mutate(lms = "Blackboard") %>%
+  relocate(lms)
+
+canvas_text <- canvas_tweets %>%
+  filter(lang == "en") %>%
+  select(screen_name, created_at, text) %>%
+  mutate(lms = "Canvas")%>%
+  relocate(lms)
+
+moodle_text <- moodle_tweets %>%
+  filter(lang == "en") %>%
+  select(screen_name, created_at, text) %>%
+  mutate(lms = "Moodle")%>%
+  relocate(lms)
+
+#combine data frames
+tweets <- bind_rows(canvas_text, gc_text, moodle_text, bb_text)
+tweets <- tibble::rowid_to_column(tweets, "index") #add unique identifier
+
+```
+
+```{r}
+tweets %>%
+  head()%>%
+  kbl(caption = "Restructured Data - tidy_tweets data frame") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+```
+
+### 2c. Tidy Text format
+
+We will tidy our text using the *tidytext and dplyr packages* to split the text into tokens creating a table with one-token-per-row. The token is under a column called word(). Another step to tidy the text is to remove the most common stop words such as *a, the, is, are and etc.* As mentioned previously, "art" is commonly connected to Canvas; therefore, we need to filter out "art."  We will take another look at the head of our tokenized text.
+
+```{r, message = FALSE}
+#tokenize tweets
+tweet_tokens <- 
+  tweets %>%
+  unnest_tokens(output = word, 
+                input = text, 
+                token = "tweets")
+
+#Tidy text and get rid of #art (nonsenese word that turned up with Canvas)
+tidy_tweets <-
+  tweet_tokens %>%
+  anti_join(stop_words, by = "word")%>%
+    filter(!word == "#art") # get rid of #art 
+
+
+```
+
+
+```{r, message = FALSE}
+tidy_tweets%>%
+  head%>%
+  kbl(caption = "Tidy Text - tidy_tweets data frame") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+
+```
+
+# 3. EXPLORE
+In this section we will explore word counts by ungrouping the tokenized words to view in a word cloud.
+
+### 3a. WordClouds
+We can get a sense of the most common words in the combined LMS Sentiment Analysis by looking at a word cloud of the word counts.  By looking at the top 50 words from the word count, we can see that *#Classroom, #Canvas, and Moodle* are very popular within the Tweets, along with *Moodle*.  
+
+
+```{r, message = FALSE}
+
+top_tokens <- tidy_tweets %>%
+  ungroup ()%>%  #ungroup the tokenize data to create a wordcloud
+  count(word, sort = TRUE) %>%
+  top_n(50)
+
+wordcloud2(top_tokens)
+
+```
+
+
+
+### 3b. Frequency Rank
+
+The *Frequency Rank* data table exhibits a new column showing we measured the importance of a word by how frequently a word occurs in the tweet.  
+
+By calculating the term frequency logarithmically, we can see the inversely proportional relationship of the negative slope for each LMS. In the log-log plotted diagram, we see a lot of deviation at various rank levels. The deviations at the lower rank show that the various LMS tweets use a lower percentage of the most common words than many collections of language. 
+
+```{r, message = FALSE}
+
+words_by_LMS <- tidy_tweets%>%
+  count(lms, word, sort = TRUE) %>%
+  ungroup()
+
+total_words <- words_by_LMS %>% 
+  group_by(lms) %>% 
+  summarize(total = sum(n))
+
+words_by_LMS <- left_join(words_by_LMS, total_words)
+
+
+freq_by_rank <- words_by_LMS %>% 
+  group_by(lms) %>% 
+  mutate(rank = row_number(), 
+         `term frequency` = n/total) %>%
+  ungroup()
+
+```
+
+```{r}
+freq_by_rank%>%
+  head()%>%
+  kbl(caption = "Learning Management Systems - word freq_by_rank data frame") %>%
+  kable_styling(bootstrap_options = c("striped", "hover")) 
+
+
+```
+
+
+```{r, message = FALSE}
+
+freq_by_rank %>% 
+  ggplot(aes(rank, `term frequency`, color = lms)) + 
+  geom_line(size = 1.1, alpha = 0.8, show.legend = TRUE) + 
+  scale_x_log10() +
+  scale_y_log10() +
+  labs()
+
+```
+
+# 4 MODEL
+To evaluate sentiment for each lexicon: Bing, NRC, AFINN and Loughran we will first load them, evaluate each sentiment and bind them into one summary sentiment data frame. 
+Secondly, we will compare Sentiment using the NRC Lexicon. I chose this lexicon after reading that it has a more accurate sentiment scale for shorter texts.
+
+### 4a. Sentiment Analysis
+Here we will load the sentiment lexicons and then rate the words according to the lexicon identifier, joining each separate data frame into one called summary_sentiment(). 
+a. The first table in this section shows the combined data frame. 
+b. The bar graph below allows visualization for the summary_sentiment() data frame.
+
+
+In both the summary_sentiment() data frame and the bar graph, we see that each LMS is overly positive. Canvas has the most unique words, and Blackboard with the least total words. Further, we can conclude that during the period, **Canvas** is the most talked about on Twitter from January 30 - February 1, 2022.  
+
+```{r, message = FALSE}
+afinn <- get_sentiments("afinn")
+nrc <- get_sentiments("nrc")
+bing <- get_sentiments("bing")
+loughran <- get_sentiments("loughran")
+
+sentiment_afinn <- inner_join(tidy_tweets, afinn, by = "word")
+sentiment_bing <- inner_join(tidy_tweets, bing, by = "word")
+sentiment_nrc <- inner_join(tidy_tweets, nrc, by = "word")
+sentiment_loughran <- inner_join(tidy_tweets, loughran, by = "word")
+
+```
+
+```{r, message = FALSE}
+
+summary_afinn2 <- sentiment_afinn %>% 
+  group_by(lms) %>% 
+  filter(value != 0) %>%
+  mutate(sentiment = if_else(value < 0, "negative", "positive")) %>% 
+  count(sentiment, sort = TRUE) %>% 
+  mutate(method = "AFINN")
+
+summary_bing2 <- sentiment_bing %>% 
+  group_by(lms) %>% 
+  count(sentiment, sort = TRUE) %>% 
+  mutate(method = "bing")
+
+summary_nrc2 <- sentiment_nrc %>% 
+  filter(sentiment %in% c("positive", "negative")) %>%
+  group_by(lms) %>% 
+  count(sentiment, sort = TRUE) %>% 
+  mutate(method = "nrc") 
+
+summary_loughran2 <- sentiment_loughran %>% 
+  filter(sentiment %in% c("positive", "negative")) %>%
+  group_by(lms) %>% 
+  count(sentiment, sort = TRUE) %>% 
+  mutate(method = "loughran") 
+
+summary_sentiment <- bind_rows(summary_afinn2,
+                               summary_bing2,
+                               summary_nrc2,
+                               summary_loughran2) %>%
+  arrange(method, lms) %>%
+  relocate(method)
+
+
+```
+
+```{r, message = FALSE}
+summary_sentiment%>%
+  head()%>%
+  kbl(caption = "Learning Management Systems - Total summary sentiment data frame") %>%
+  kable_styling(bootstrap_options = c("striped", "hover")) 
+
+```
+
+
+```{r, message = FALSE}
+ggplot(summary_sentiment, aes(n, sentiment, fill = lms)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~lms, ncol = 2, scales = "free_x")
+
+```
+
+
+#### Lexicon Percent for each Learning Management System
+
+Looking at the Sentiment percents by Lexicon we can see that NRC reveals the most positive score for all the LMS and Loughran measures the least positive. Blackboard had such a small number of words that it is positive on all lexicons.
+```{r, message = FALSE}
+#create a new data frame that has the total word counts for each LMS and each method
+total_counts <- summary_sentiment %>%
+  group_by(method, lms) %>%
+  summarise(total = sum(n))
+
+#join to the summary_sentiment data frame
+sentiment_counts <- left_join(summary_sentiment, total_counts)
+
+#calculates the percentage of positive and negative words for each LMS
+sentiment_percents <- sentiment_counts %>%
+  mutate(percent = n/total * 100)
+
+
+
+```
+
+```{r, message = FALSE}
+sentiment_percents%>%
+  head()%>%
+  kbl(caption = "Learning Management Systems - Sentiment Percents") %>%
+  kable_styling(bootstrap_options = c("striped", "hover")) 
+
+```
+
+```{r, message = FALSE}
+
+sentiment_percents %>%
+  ggplot(aes(x = lms, y = percent, fill=sentiment)) +
+  geom_bar(width = .8, stat = "identity") +
+  facet_wrap(~method, ncol = 1) +
+  coord_flip() +
+  labs(title = "Public Sentiment on Twitter", 
+       subtitle = "Google Classroom, Moodle, Canvas & BlackBoard ",
+       x = "Learning Management System", 
+       y = "Percentage of Words")
+```
+
+### 4b. Visualizing sentiment with the NRC lexicon
+
+It is essential to look at a time graph to visualize a sentiment spike throughout data collection. Insights from this type of graph would allow for further investigation. This particular plot looks at NRC sentiment for all LMS during Twitter data collection. Interestingly it shows that between January 30 - February 1 *fear, disgust, and pain* sentiment seems to increase with negative emotions.   This spike indicates that further investigation is needed to understand the cause.
+
+```{r, message=FALSE}
+library(ggjoy)
+
+  ggplot(sentiment_nrc) +
+    geom_joy(aes(
+      x = created_at,
+      y = sentiment, 
+      fill = sentiment),
+      rel_min_height = 0.01,
+      alpha = 0.7,
+      scale = 3) +
+    theme_joy() +
+    labs(title = "LMS Twitter NRC Sentiment during 1/26/22 - 2/5/22 ",
+         x = "Tweet Date",
+         y = "Sentiment") + 
+    scale_fill_discrete(guide=FALSE)
+
+
+```
+
+
+#### Common words within each NRC sentiment category
+Finally, let's also look at the common words within categories associated with the NRC Lexicon for each Learning Management System. Looking at the words we we get a better sense of what words we would except to be in the categories of *anger, anticipation, disgust, fear joy, negative, positive, sadness , surprise * and *trust.*
+
+You will also notice within the categories words that may not belong in those categories as they were used sarcastically. A deeper dive looking at Bigram would help us understand the words that these words are connected to.
+
+##### NRC sentiment categories for Google Classroom
+
+```{r, message = FALSE}
+library(ggrepel)
+plot_words1 <- sentiment_nrc %>%
+  filter(lms == "Google Classroom") %>%
+  group_by(sentiment) %>%
+  count(word, sort = TRUE) %>%
+  arrange(desc(n)) %>%
+  slice(seq_len(10)) %>%
+  ungroup()
+
+#Same comments as previous graph
+goggle_words<- plot_words1 %>%
+  ggplot(aes(word, 1, label = word, fill = sentiment )) +
+  geom_point(color = "transparent") +
+  geom_label_repel(force = 1,nudge_y = .5,  
+                   direction = "y",
+                   box.padding = 0.05,
+                   segment.color = "transparent",
+                   size = 3) +
+  theme_lms()+
+  facet_grid(~sentiment) +
+  theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+        axis.title.x = element_text(size = 6),
+        panel.grid = element_blank(), panel.background = element_blank(),
+        panel.border = element_rect("lightgray", fill = NA),
+        strip.text.x = element_text(size = 9)) +
+  xlab(NULL) + ylab(NULL) +
+  ggtitle("Google Classroom NRC Sentiment") +
+  coord_flip()
+
+goggle_words
+
+```
+
+##### NRC sentiment categories for Moodle
+
+```{r, message = FALSE}
+plot_words2 <- sentiment_nrc %>%
+  filter(lms == "Moodle") %>%
+  group_by(sentiment) %>%
+  count(word, sort = TRUE) %>%
+  arrange(desc(n)) %>%
+  slice(seq_len(10)) %>%
+  ungroup()
+
+
+moodle_words <- plot_words2 %>%
+  ggplot(aes(word, 1, label = word, fill = sentiment )) +
+  geom_point(color = "transparent") +
+  geom_label_repel(force = 1,nudge_y = .5,  
+                   direction = "y",
+                   box.padding = 0.05,
+                   segment.color = "transparent",
+                   size = 3) +
+  theme_lms()+
+  facet_grid(~sentiment) +
+  theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+        axis.title.x = element_text(size = 6),
+        panel.grid = element_blank(), panel.background = element_blank(),
+        panel.border = element_rect("lightgray", fill = NA),
+        strip.text.x = element_text(size = 9)) +
+  xlab(NULL) + ylab(NULL) +
+  ggtitle("Moodle NRC Sentiment") +
+  coord_flip()
+moodle_words
+
+```
+
+##### NRC sentiment categories for Canvas
+
+```{r, message = FALSE}
+plot_words3 <- sentiment_nrc %>%
+  filter(lms == "Canvas") %>%
+  group_by(sentiment) %>%
+  count(word, sort = TRUE) %>%
+  arrange(desc(n)) %>%
+  slice(seq_len(10)) %>%
+  ungroup()
+
+
+canvas_words <- plot_words3 %>%
+  ggplot(aes(word, 1, label = word, fill = sentiment )) +
+  geom_point(color = "transparent") +
+  geom_label_repel(force = 1,nudge_y = .5,  
+                   direction = "y",
+                   box.padding = 0.05,
+                   segment.color = "transparent",
+                   size = 3) +
+  theme_lms()+
+  facet_grid(~sentiment) +
+  theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+        axis.title.x = element_text(size = 6),
+        panel.grid = element_blank(), panel.background = element_blank(),
+        panel.border = element_rect("lightgray", fill = NA),
+        strip.text.x = element_text(size = 9)) +
+  xlab(NULL) + ylab(NULL) +
+  ggtitle("Canvas NRC Sentiment") +
+  coord_flip()
+
+canvas_words
+
+```
+
+##### NRC sentiment categories for Blackboard
+```{r, message = FALSE}
+plot_words4 <- sentiment_nrc %>%
+  filter(lms == "Blackboard") %>%
+  group_by(sentiment) %>%
+  count(word, sort = TRUE) %>%
+  arrange(desc(n)) %>%
+  slice(seq_len(10)) %>%
+  ungroup()
+
+
+BB_words <- plot_words4 %>%
+  ggplot(aes(word, 1, label = word, fill = sentiment )) +
+  geom_point(color = "transparent") +
+  geom_label_repel(force = 1,nudge_y = .5,  
+                   direction = "y",
+                   box.padding = 0.05,
+                   segment.color = "transparent",
+                   size = 3) +
+  theme_lms()+
+  facet_grid(~sentiment) +
+  theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+        axis.title.x = element_text(size = 6),
+        panel.grid = element_blank(), panel.background = element_blank(),
+        panel.border = element_rect("lightgray", fill = NA),
+        strip.text.x = element_text(size = 9)) +
+  xlab(NULL) + ylab(NULL) +
+  ggtitle("Blackboard NRC Sentiment") +
+  coord_flip()
+  
+
+BB_words
+
+```
+
+
+# 5. COMMUNICATE
+
++ **Purpose - ** The purpose of the case study is to produce a sentiment analysis examining Twitter public sentiment for four popular Learning Management Systems; Google Classroom, Canvas, Blackboard, and Moodle. We looked closely at the lexicons and their percentage for each LMS sentiment as more positive or negative. Finally, we looked at words that fit into the sentiment categories identifying areas that may need a closer look.
+
++ **Methods -** For this independent analysis I explored tweet counts, sentiment analysis, and unique sentiment words.
+
++ **Findings -** The LMS, Google Classroom, Canvas, Moodle, and Blackboard sentiment was positively skewed. I was amazed that the words online, virtual, or e-learning did not appear as top sentiment words for any LMS. In most cases, the top words associated with the LMS names include Google, Classroom, Canvas, Moodle, which is not surprising since they are typically hashtagged. Canvas was the most popular on Twitter from January 26 to February 5, 2022. 
+
+  |    Finally, Blackboard had the lowest counts and was the least tweeted for this 
+  |    case study.
+
+
++ **Discussion -** Insights from a case study like this can be used to guide Public and Private organizations looking to purchase a Learning Management System or of the companies who own the LMS. 
+  a. A public or Private organization looking to purchase LMS may use the insights to look at the negative and positive sentiment to see what current customers are commenting on and if the product would be a "best fit" for their organization.
+  c. The LMS software companies may monitor sentiment analysis to determine customer concerns and, in some cases, develop or improve features that meet customer needs.
+  d. The LMS companies can monitor negative or positive sentiments about their competitors to improve their own products.
+  e. Additional research should be taken to understand why there was a spike in negative sentiment during the time periods of January 29 - February 3. Monitoring those features may provide insights and prevent a reduction in customer base.
+  
+  |  Additional analysis would be beneficial to understand customer sentiment
+  | analysis over a longer period. Monitoring with a dashboard may also be an option
+  | to analyze spikes in positive or negative sentiment quickly address those
+  | features and concerns.
+
+
+
