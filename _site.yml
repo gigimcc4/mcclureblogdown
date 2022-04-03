@@ -7,4 +7,6 @@ navbar:
   right:
     - text: "About"
       href: index.html
+    - text: "projects"
+      href: projects.html
 output: distill::distill_article
