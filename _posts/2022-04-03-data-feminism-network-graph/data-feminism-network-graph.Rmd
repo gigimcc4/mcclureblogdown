@@ -1,0 +1,244 @@
+---
+title: "What can Tweets tell us about Data Feminism?"
+description: |
+  Using a tweet data we created a network graph to look at emerging data feminism topics.
+author:
+  - name: Jeanne McClure
+preview: dfnetwork.png
+date: 2022-03-28
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# 1. PURPOSE
+
+### 1a. Motivation and Focus
+Studying social media in the digital age can illuminate themes within organizations, topics and even agents of change.
+
+Data Feminism is a specific topic of interest for me. "Data Feminism offers strategies for data scientists seeking to learn how feminism can help them work toward justice, and for feminists who want to focus their efforts on the growing field of data science. But Data Feminism is about much more than gender. It is about power, about who has it and who doesn't, and about how those differentials of power can be challenged and changed" (@DIgnazio and @Klein, 2020).
+
+
+**Guiding Questions:**
+
+Feminist Joni Seager asserts, "What get's counted, counts!" My guiding question is:
+- What do recent tweets say about "Data Feminism" since the recent SoLar Convention? 
+
+I pulled data over a week after the SoLAr confernce to try and understand what themes emerged.
+
+### 1b. Load Libraries
+
+First, we load libraries that we will use to wrangle our data and then visualize it. We will not use the Twitter API here as the data set was saved.
+
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+library(readxl)
+library(tidytext)
+library(textdata)
+library(ggplot2)
+library(kableExtra)
+library(scales)
+library(rtweet)
+library(tidyr)
+library(stringr)
+
+
+library(vtree)
+library(igraph)
+library(ggraph)
+library(tidygraph)
+library(networkD3)
+library(ggplot2)
+
+#SET PARAMETERS
+#define colors to use throughout
+my_colors <- c("#E69F00", "#56B4E9", "#009E73", "#CC79A7", "#D55E00", "#D65E00")
+
+theme_plot <- function(aticks = element_blank(),
+                         pgminor = element_blank(),
+                         lt = element_blank(),
+                         lp = "none")
+{
+  theme(plot.title = element_text(hjust = 0.5), #center the title
+        axis.ticks = aticks, #set axis ticks to on or off
+        panel.grid.minor = pgminor, #turn on or off the minor grid lines
+        legend.title = lt, #turn on or off the legend title
+        legend.position = lp) #turn on or off the legend
+}
+```
+
+# 2. METHOD
+
+### 2a. Read in and Wrangle the tweet data
+We will read in the previously pulled Data Feminism tweets. Using:
+-   "#DataFeminism"
+-   "Data Feminism" and
+-   "#AfrofeministDataFutures"
+
+
+-   Then subset the rows and columns to pull only English language texts
+-   We will bind each separate data frame into one data frame named tweets().
+-   We will need to create a unique identifying index column for later analysis.
+-   Finally, let’s look at the head of our new tweets() data frame.
+
+We have 491 tweets and 91 variables. We do not need all of that so we will wrangle our data in the next section.
+
+```{r warning=FALSE, message=FALSE}
+dataF_tweets <- read_excel("~/r-projects/mccluredistill/_posts/2022-04-03-data-feminism-network-graph/data/dataF_tweets.xlsx")
+
+```
+
+
+### 2b. Tidy Data
+```{r warning=FALSE, message=FALSE}
+dataF_tidy <- dataF_tweets %>%
+  filter(lang == "en") %>%
+  select(screen_name, created_at, text)%>%
+  mutate(feminism = "data feminism") %>%
+  relocate(feminism)
+
+dataF_tidy %>%
+  head()%>%
+  kbl(caption = "Restructured Data - Data Feminism data frame") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+  
+```
+## Tokenize words
+We will tidy our text using the tidytext and dplyr packages to split the text into two tokens (bigrams)creating a table with one-token-per-row . The token is under a column called word(). Another step to tidy the text is to remove the most common stop words such as a, the, is, are, amp, and, etc. 
+
+Before we break them into bigrams let's inspect one token to ee if there is any other nonsense words we need to eliminate.
+
+```{r warning=FALSE, message=FALSE}
+#tokenize tweets
+tweet_tokens <- 
+  dataF_tidy %>%
+  unnest_tokens(output = word, 
+                input = text, 
+                token = "tweets")
+
+#Tidy text and get rid of #art (nonsenese word that turned up with Canvas)
+dataFem_tweets <-
+  tweet_tokens %>%
+  anti_join(stop_words, by = "word")
+
+dataFem_tweets%>%
+  head%>%
+  kbl(caption = "tokenized dataFem data frame") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+```
+
+# 3. Explore
+
+### 3a. Tokenized single word count
+Let's look the word count for the dataFem_tweets to see if we see any emerging themes. We can see a high number if Data Science themes and hashtags. We can go ahead and create our bigrams in the next section.
+
+```{r}
+dataFem_tweets %>%
+  count(word, sort = TRUE) 
+```
+
+### 3b. Create Bigram
+
+Below let's create our Bigrams by removing hashtags, and other nonsense words.
+You now see that we have 145 observations and two variables
+
+```{r message=FALSE, warning=FALSE}
+# regex for parsing tweets
+replace_reg <- "https?://[^\\s]+|&amp;|&lt;|&gt;|&d2l;|&aristotlemrs;|&aleks;|\bRT\\b"
+# split into word pairs
+dataF_bigrams <- dataF_tidy %>% 
+  mutate(text = str_replace_all(text, replace_reg, "")) %>%
+  unnest_tokens(bigram, text, token = "ngrams", n = 2)
+
+# remove stop words
+dataF_bigrams <- dataF_bigrams %>%
+  separate(bigram, into = c("first","second"), sep = " ", remove = FALSE) %>%
+  anti_join(stop_words, by = c("first" = "word")) %>%
+  anti_join(stop_words, by = c("second" = "word")) %>%
+  filter(str_detect(first, "[a-z]") &
+         str_detect(second, "[a-z]"))
+
+bigrams_united <- dataF_bigrams%>%
+  unite(bigram, first, second, sep = " ")
+
+bigrams_united
+
+#count up new birgams and create a new column called n only keep more than 5 counts
+dataF_bigrams_count <- dataF_bigrams %>%
+  group_by(screen_name, bigram, first, second)%>%
+  summarise(n=n())%>%
+  filter(n >= 5)%>%
+  arrange(-n)%>%
+  ungroup()
+
+
+dataF_bigrams_count %>%
+  count(bigram, sort = TRUE) 
+```
+
+Again, we see a high prevalence of Data Science terms.
+
+# 4 Model
+
+### 4a. GGRAPH of Bigrams
+
+Here we will plot our bigrams in a network graph using ggraph package. We can see that there is some central bigrams with radiating nodes.
+
+```{r warning = FALSE, message = FALSE}
+
+# Rename and reorder columns (so we can make the graphs more easily)
+dataF_bigram_tbl <- dataF_bigrams_count %>%
+  dplyr::select(c('first','second', 'n'))
+
+
+bigram_graph <- dataF_bigram_tbl %>%
+  filter(n > 10) %>%
+  graph_from_data_frame()
+
+
+set.seed(123)
+
+
+p <- ggraph(bigram_graph, layout = "fr") +
+    geom_edge_link(aes(edge_alpha = n), show.legend = FALSE) +
+    geom_node_point(color = "lightblue", size = 5) +
+    geom_node_text(aes(label = name), vjust = 1, hjust = 1) +
+ theme_graph() +
+  theme(legend.position = "none")
+
+p
+```
+
+# 5. COMMUNICATE
+
+Purpose - The purpose of the case study is to look at the **social network* of Bigrams from a Tweet Dataset on Data Feminism pulled previously during the SoLar Conference. Understanding how information is shared within the network is important to understand what topics or themes for future research.
+
+Methods - For this independent analysis I explored tweet Bigrams which is a text mining process.
+
+Findings - Several top Cluster themes stood out:
+-   Women who Code
+-   femtech
+-   IOT (Internet of Things)
+-   ML (Machine Learning)
+
+
+The words are paired by co-occurrence.
+
+
+Discussion - Bigrams network might show the general idea of the content of the information gathered in twitter posts. Insights from a case study like this may be used to guide Public and Private organizations looking to monitor how information regarding research or product launch. A Bigram analysis from collected Tweets may show terms that may not be identical to other analysis.
+
+References:
+D'ignazio, C., & Klein, L. F. (2020). Data feminism. MIT press.
+
+
+
+

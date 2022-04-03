@@ -1,0 +1,321 @@
+---
+title: "Investigating Closeness in a MOOC-Ed discussion group"
+description: |
+  Working on this one
+author:
+  - name: Jeanne McClure
+preview: SNAMOOC.png
+date: 2022-04-03
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## 1 Load Packages
+
+```{r load_packages, message = FALSE, warning = FALSE}
+
+library(tidyverse)
+library(skimr)
+library(igraph)
+library(tidygraph)
+library(ggraph)
+library(janitor)
+library(RColorBrewer)
+
+```
+
+## 2 Wrangle Data
+
+Import edges:
+```{r read_edges, message = FALSE, warning = FALSE}
+dlt1_ties <- read_csv("~/r-projects/mccluredistill/_posts/2022-04-03-closeness-betweeness-socialnetworking/data/dlt1-edges.csv", 
+                      col_types = cols(Sender = col_character(), 
+                                       Receiver = col_character(), 
+                                       `Category Text` = col_skip(), 
+                                       `Comment ID` = col_character(), 
+                                       `Discussion ID` = col_character())) |>
+  clean_names()
+
+dlt1_ties
+```
+
+
+Add node attributes:
+
+
+```{r read_nodes, message = FALSE, warning = FALSE}
+dlt1_actors <- read_csv("data/dlt1-nodes.csv", 
+                        col_types = cols(UID = col_character(), 
+                                       Facilitator = col_character(), 
+                                       `expert` = col_character(), 
+                                       `connect` = col_character())) |>
+  clean_names()
+
+dlt1_actors
+
+```
+
+codebook descriptors. The first one has been done as an example.
+
+-   `Facilitator` = Identification of course facilitator (1 =
+    instructor)
+-   `UID` = Dummy variable for whether participants listed networking and
+    collaboration with others as one of their course goals on the
+    registration form
+-   `expert` = Identifier of "expert panelists" invited to course to share
+    experience through recorded Q&A
+-   `Facilitator` = Identification of course facilitator (1 **=** instructor)
+-   `role1` = Professional role (eg, teacher, librarian, administrator)
+-   ` experience2` = Years of experience as an educator
+-   `grades` = Works with elementary, middle, and/or high school students
+-   ` geoup` = Initial assignment of discussion group
+
+### 2b. Create Network Object and convert to graph object
+
+```{r create_network, message = FALSE, warning = FALSE}
+dlt1_network <- tbl_graph(edges = dlt1_ties,
+                          nodes = dlt1_actors,
+                          node_key = "uid",
+                          directed = TRUE)
+```
+
+```{r message = FALSE, warning = FALSE}
+# create dlt2
+
+dlt2_ties <- read_csv("data/dlt2-edges.csv", 
+                      col_types = cols(Sender = col_character(), 
+                                       Reciever = col_character(), 
+                                       `Category` = col_skip(), 
+                                       `CommentID` = col_character(), 
+                                       `DiscussionID` = col_character())) |>
+  clean_names()
+
+dlt2_actors <- read_csv("data/dlt2-nodes.csv", 
+                      col_types = cols(uid = col_character(), 
+                                       facilitator = col_character(), 
+                                       `expert` = col_character(), 
+                                       `connect` = col_character())) |>
+  clean_names()
+
+dlt2_network <- tbl_graph(edges = dlt2_ties,
+                          nodes = dlt2_actors,
+                          node_key = "uid",
+                          directed = TRUE)
+```
+
+Inspect the networks
+```{r inspect_network, message = FALSE, warning = FALSE}
+dlt1_network
+dlt2_network
+
+```
+
+## 3. Explore
+
+Let's first take a quick look at the summaries for
+"weak" components in our network:
+There are 4 components as we discovered above, 1 component has 442 members and three (our isolates) have only 1 member.
+
+
+```{r components_weak, message = FALSE, warning = FALSE}
+components(dlt1_network, mode = c("weak"))
+```
+
+
+Now let's inspect the strong components:
+WOW, you'll see that we have a total of 209 distinct components!
+
+```{r components_strong, message = FALSE, warning = FALSE}
+components(dlt1_network, mode = c("strong"))
+```
+
+If we wanted to illustrate this with a sociogram, we could create a new
+edge variable using the same `activate()` and `mutate()` functions and
+`filter()` our edges so our graph only contains reciprocated ties, like
+so:
+
+```{r filter_reciprocated, message = FALSE, warning = FALSE}
+dlt1_network |>
+  activate(edges) |>
+  mutate( reciprocated = edge_is_mutual()) |> 
+  filter(reciprocated == TRUE) |>
+  autograph()
+```
+
+Or we could filter out all isolates in our strong component network
+entirely using the same `activate()` and `filter()` functions:
+```{r group_components, message = FALSE, warning = FALSE}
+dlt1_network <- dlt1_network |>
+  activate(nodes) |>
+  mutate(strong_component = group_components(type = "strong"))
+
+```
+
+```{r filter_component, message = FALSE, warning = FALSE}
+
+dlt1_network |>
+  activate(nodes) |>
+  filter(strong_component == 1) |>
+  autograph()
+```
+
+
+**Compositional and Variance Measures**
+To quickly calculate summary statistics for our nodes, including
+compositional and variance measures for our egocentric measures, we can
+use the `skim()` function from the {skimr} package to take a quick look
+at the variables in our node list:
+
+```{r skimr, message = FALSE, warning = FALSE}
+dlt1_network |> 
+  as_tibble() |>
+  skim()
+```
+
+
+
+Create in a tibble and convert our node to a table and `arrange()`
+in descending order by `size` to make it easier to see the range in
+values of our network:
+
+```{r local_size, message = FALSE, warning = FALSE}
+dlt1_network <- dlt1_network |>
+  activate(nodes) |>
+  mutate(size = local_size())
+
+dlt1_network |> 
+  as_tibble() |>
+  arrange(desc(size)) |> 
+  select(uid, facilitator, size)
+```
+
+
+let's select only MOOC-Ed participants who are located in the
+United States and calculate compositional and variance measures for
+`size` by educator's role:
+```{r size_role, message = FALSE, warning = FALSE}
+dlt1_network |> 
+  as_tibble() |>
+  filter(country == "US") |>
+  group_by(role1) |>
+  select(size) |>
+  skim()
+```
+
+
+Find `degree` Run the following create two new variables for our nodes: `in_dgree` and
+`out_degree`. We'll set the `mode =` argument in `centrality_degree()`
+function to `"in"` and `"out"` respectively.
+
+```{r centrality_degree, message = FALSE, warning = FALSE}
+dlt1_network <- dlt1_network |>
+  activate(nodes) |>
+  mutate(in_degree = centrality_degree(mode = "in"),
+         out_degree = centrality_degree(mode = "out"))
+  
+dlt1_network |> 
+  as_tibble()
+```
+
+Use the code chunk below to add a `closeness` and `betweenness` variable
+to the nodes in our network
+
+
+
+```{r closeness_betweenness, message = FALSE, warning = FALSE}
+dlt1_undirected <-  to_undirected(dlt1_network)
+
+set.seed(123)
+dlt1_stats <- dlt1_undirected %>% 
+  activate(nodes)%>%
+  mutate(community = as.factor(group_louvain())) %>%
+  mutate(degree_c = centrality_degree()) %>%
+  mutate(betweenness_c = centrality_betweenness(directed = FALSE ,normalized = TRUE)) %>%
+  mutate(closeness_c = centrality_closeness(normalized = TRUE))
+
+  
+
+dltl_stats_ego <- as.data.frame(dlt1_stats)  
+dltl_stats_ego
+
+keyego <- data.frame(
+  dltl_stats_ego %>%
+  arrange(-degree_c)%>%
+  select(uid),
+ dltl_stats_ego %>%
+  arrange(-betweenness_c)%>%
+  select(uid),
+  dltl_stats_ego %>%
+  arrange(-closeness_c)%>%
+  select(uid))%>%
+  setNames(c("degree","betweenness","closeness"))
+keyego[]
+
+
+
+```
+
+1.  Which two actors have the highest betweenness and what is unique
+    about their role in the course?
+
+    -   The top two actors that have the highest betweeness are 444 and 445. They are also the facilitators of the group
+
+2.  Do these same two actors also have the highest closeness? How might
+    you interpret that?
+
+    -   Yes, they also have the highest number of closeness as well. They have the shortest distance path to all other nodes.
+
+## 4. MODEL
+
+To be connected to others matters. To be able to share and learn from each other matters. Carolan( 2014) explains, "Teachers who share best practices with others expand their own teaching repertoires."  We explored the Southern region participants of a MOOC-Ed discussion through the visualization above.
+
+Asking whether years of experience make a difference in a discussion forum? What ways are the participants connected?
+
+```{r create_data_product, warning=FALSE, message=FALSE}
+
+dlt1_network |>
+  activate(nodes) |>
+  filter(region == 'South')|>
+  mutate(degree=centrality_degree()) |> 
+  filter(degree>0)|>
+  activate(edges) |>
+  mutate(betweenness = centrality_edge_betweenness()) |>
+ggraph(layout = "stress") +
+  geom_edge_link0(aes(edge_alpha = betweenness), edge_color = "grey66") +
+  geom_node_point(aes(size = degree, shape = experience2, color = group)) +
+  scale_edge_width_continuous(range = c(0.2, 10)) +
+  scale_size_continuous(range = c(1, 8)) +
+  ggtitle( "MOOC-Ed Southern Region Participants" ) +
+  theme( legend.key = element_rect( fill = "white", colour = "black" ), 
+  legend.title = element_text(face = "bold" )) +
+  guides(color =FALSE)+
+  theme_graph() +
+  theme(legend.position = "right", legend.text = element_text(size = 6, colour = "black"))
+
+
+ 
+```
+
+-   What we found was that the blue group seemed to have higher centrality degree and betweenness. The localized degree measurement captures many actors in the blue group with more years of experience are higher connected to other actors regardless of how those other actors are related to each other. 
+
+-   We also looked at the gatekeeper function, and those same actors with the highest degree also had a higher betweenness score.
+
+Using this type of analysis, the facilitator could reach out to those with high betweenness and closeness degrees to spread information and ideas to the rest of the group. 
+
+To improve this analysis, I would first look at the closeness degree and include it as an edge color. Next, I would like to explore each group separately. I would be able to analyze each network and the actors' brokerage to find out if there are any consultants. 
+
+
+
+
+
+### References
+
+Kellogg, Shawn (2022). Unit 3: Components, Cliques, & Key Actors. ECI 589 Social Network Analysis and Education
