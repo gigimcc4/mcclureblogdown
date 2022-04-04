@@ -1,0 +1,3462 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
+  <!--radix_placeholder_meta_tags-->
+<title>Jeanne McClure: Understanding student goals - a Topic Modeling approach</title>
+
+<meta property="description" itemprop="description" content="Looking at student goals for emerging topics or themes."/>
+
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2021-11-27"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-11-27"/>
+<meta name="article:author" content="Jeanne McClure"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="Jeanne McClure: Understanding student goals - a Topic Modeling approach"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="Looking at student goals for emerging topics or themes."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="Jeanne McClure"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary"/>
+<meta property="twitter:title" content="Jeanne McClure: Understanding student goals - a Topic Modeling approach"/>
+<meta property="twitter:description" content="Looking at student goals for emerging topics or themes."/>
+
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","preview","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Understanding student goals - a Topic Modeling approach"]},{"type":"character","attributes":{},"value":["Looking at student goals for emerging topics or themes."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Jeanne McClure"]}]}]},{"type":"character","attributes":{},"value":["soarpict1.jpg"]},{"type":"character","attributes":{},"value":["2021-11-27"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["data/Soar-resposes.csv","soar-project_files/anchor-4.2.2/anchor.min.js","soar-project_files/bowser-1.9.3/bowser.min.js","soar-project_files/distill-2.2.21/template.v2.js","soar-project_files/figure-html5/unnamed-chunk-15-1.png","soar-project_files/figure-html5/unnamed-chunk-16-1.png","soar-project_files/figure-html5/unnamed-chunk-25-1.png","soar-project_files/figure-html5/unnamed-chunk-33-1.png","soar-project_files/figure-html5/unnamed-chunk-35-1.png","soar-project_files/figure-html5/unnamed-chunk-56-1.png","soar-project_files/header-attrs-2.13/header-attrs.js","soar-project_files/jquery-3.6.0/jquery-3.6.0.js","soar-project_files/jquery-3.6.0/jquery-3.6.0.min.js","soar-project_files/jquery-3.6.0/jquery-3.6.0.min.map","soar-project_files/popper-2.6.0/popper.min.js","soar-project_files/tippy-6.2.7/tippy-bundle.umd.min.js","soar-project_files/tippy-6.2.7/tippy-light-border.css","soar-project_files/tippy-6.2.7/tippy.css","soar-project_files/tippy-6.2.7/tippy.umd.min.js","soar-project_files/webcomponents-2.0.0/webcomponents.js","soarpict1.jpg"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+<meta name="distill:offset" content="../.."/>
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      tolerance: 5,
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #0F2E3D;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+  min-width: 150px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative; min-height: 500px; }
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+/* adjust viewport for navbar height */
+/* helps vertically center bootstrap (non-distill) content */
+.min-vh-100 {
+  min-height: calc(100vh - 100px) !important;
+}
+
+</style>
+
+<script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+<script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+<script type="application/javascript">
+
+function getMeta(metaName) {
+  var metas = document.getElementsByTagName('meta');
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+  return '';
+}
+
+function offsetURL(url) {
+  var offset = getMeta('distill:offset');
+  return offset ? offset + '/' + url : url;
+}
+
+function createFuseIndex() {
+
+  // create fuse index
+  var options = {
+    keys: [
+      { name: 'title', weight: 20 },
+      { name: 'categories', weight: 15 },
+      { name: 'description', weight: 10 },
+      { name: 'contents', weight: 5 },
+    ],
+    ignoreLocation: true,
+    threshold: 0
+  };
+  var fuse = new window.Fuse([], options);
+
+  // fetch the main search.json
+  return fetch(offsetURL('search.json'))
+    .then(function(response) {
+      if (response.status == 200) {
+        return response.json().then(function(json) {
+          // index main articles
+          json.articles.forEach(function(article) {
+            fuse.add(article);
+          });
+          // download collections and index their articles
+          return Promise.all(json.collections.map(function(collection) {
+            return fetch(offsetURL(collection)).then(function(response) {
+              if (response.status === 200) {
+                return response.json().then(function(articles) {
+                  articles.forEach(function(article) {
+                    fuse.add(article);
+                  });
+                })
+              } else {
+                return Promise.reject(
+                  new Error('Unexpected status from search index request: ' +
+                            response.status)
+                );
+              }
+            });
+          })).then(function() {
+            return fuse;
+          });
+        });
+
+      } else {
+        return Promise.reject(
+          new Error('Unexpected status from search index request: ' +
+                      response.status)
+        );
+      }
+    });
+}
+
+window.document.addEventListener("DOMContentLoaded", function (event) {
+
+  // get search element (bail if we don't have one)
+  var searchEl = window.document.getElementById('distill-search');
+  if (!searchEl)
+    return;
+
+  createFuseIndex()
+    .then(function(fuse) {
+
+      // make search box visible
+      searchEl.classList.remove('hidden');
+
+      // initialize autocomplete
+      var options = {
+        autoselect: true,
+        hint: false,
+        minLength: 2,
+      };
+      window.autocomplete(searchEl, options, [{
+        source: function(query, callback) {
+          const searchOptions = {
+            isCaseSensitive: false,
+            shouldSort: true,
+            minMatchCharLength: 2,
+            limit: 10,
+          };
+          var results = fuse.search(query, searchOptions);
+          callback(results
+            .map(function(result) { return result.item; })
+          );
+        },
+        templates: {
+          suggestion: function(suggestion) {
+            var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+              ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+              : '';
+            var html = `
+              <div class="search-item">
+                <h3>${suggestion.title}</h3>
+                <div class="search-item-description">
+                  ${suggestion.description || ''}
+                </div>
+                <div class="search-item-preview">
+                  ${img}
+                </div>
+              </div>
+            `;
+            return html;
+          }
+        }
+      }]).on('autocomplete:selected', function(event, suggestion) {
+        window.location.href = offsetURL(suggestion.path);
+      });
+      // remove inline display style on autocompleter (we want to
+      // manage responsive display via css)
+      $('.algolia-autocomplete').css("display", "");
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+
+});
+
+</script>
+
+<style type="text/css">
+
+.nav-search {
+  font-size: x-small;
+}
+
+/* Algolioa Autocomplete */
+
+.algolia-autocomplete {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: sub;
+  background-color: white;
+  color: black;
+  padding: 6px;
+  padding-top: 8px;
+  padding-bottom: 0;
+  border-radius: 6px;
+  border: 1px #0F2E3D solid;
+  width: 180px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-nav .algolia-autocomplete {
+    display: none;
+    visibility: hidden;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete {
+    display: inline-block;
+    visibility: visible;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+    margin-left: 0;
+    width: 400px;
+    max-height: 400px;
+  }
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 90%;
+  outline: none;
+  border: none;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 550px;
+  max-height: 70vh;
+  overflow-x: visible;
+  overflow-y: scroll;
+  padding: 5px;
+  margin-top: 3px;
+  margin-left: -150px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #999;
+  border-top: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+  border-bottom: none;
+  margin-bottom: 2px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+  overflow: hidden;
+  font-size: 0.8em;
+  line-height: 1.4em;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+  font-size: 1rem;
+  margin-block-start: 0;
+  margin-block-end: 5px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+  display: inline-block;
+  overflow: hidden;
+  height: 2.8em;
+  width: 80%;
+  margin-right: 4%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+  display: inline-block;
+  width: 15%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+  height: 3em;
+  width: auto;
+  display: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+  display: initial;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #eee;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+</style>
+
+
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+d-byline .byline {
+  grid-template-columns: 2fr 2fr;
+}
+
+d-byline .byline h3 {
+  margin-block-start: 1.5em;
+}
+
+d-byline .byline .authors-affiliations h3 {
+  margin-block-start: 0.5em;
+}
+
+.authors-affiliations .orcid-id {
+  width: 16px;
+  height:16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  vertical-align: middle;
+  padding-bottom: 2px;
+}
+
+d-title .dt-tags {
+  margin-top: 1em;
+  grid-column: text;
+}
+
+.dt-tags .dt-tag {
+  text-decoration: none;
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0em 0.4em;
+  margin-right: 0.5em;
+  margin-bottom: 0.4em;
+  font-size: 70%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+d-article table.gt_table td,
+d-article table.gt_table th {
+  border-bottom: none;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-top: 2.5rem;
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article h2 {
+  margin: 1rem 0 1.5rem 0;
+}
+
+d-article h3 {
+  margin-top: 1.5rem;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+/* Tweak code blocks */
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: auto;
+}
+
+d-article div.sourceCode {
+  background-color: white;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+d-article pre {
+  font-size: 12px;
+  color: black;
+  background: none;
+  margin-top: 0;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+d-article pre a {
+  border-bottom: none;
+}
+
+d-article pre a:hover {
+  border-bottom: none;
+  text-decoration: underline;
+}
+
+d-article details {
+  grid-column: text;
+  margin-bottom: 0.8em;
+}
+
+@media(min-width: 768px) {
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: visible !important;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+d-article pre {
+  font-size: 14px;
+}
+
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for d-contents */
+
+.d-contents {
+  grid-column: text;
+  color: rgba(0,0,0,0.8);
+  font-size: 0.9em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  padding-left: 0.25em;
+  justify-self: start;
+}
+
+@media(min-width: 1000px) {
+  .d-contents.d-contents-float {
+    height: 0;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    justify-self: center;
+    padding-right: 3em;
+    padding-left: 2em;
+  }
+}
+
+.d-contents nav h3 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.d-contents li {
+  list-style-type: none
+}
+
+.d-contents nav > ul {
+  padding-left: 0;
+}
+
+.d-contents ul {
+  padding-left: 1em
+}
+
+.d-contents nav ul li {
+  margin-top: 0.6em;
+  margin-bottom: 0.2em;
+}
+
+.d-contents nav a {
+  font-size: 13px;
+  border-bottom: none;
+  text-decoration: none
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.d-contents nav a:hover {
+  text-decoration: underline solid rgba(0, 0, 0, 0.6)
+}
+
+.d-contents nav > ul > li > a {
+  font-weight: 600;
+}
+
+.d-contents nav > ul > li > ul {
+  font-weight: inherit;
+}
+
+.d-contents nav > ul > li > ul > li {
+  margin-top: 0.2em;
+}
+
+
+.d-contents nav ul {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.d-article-with-toc h2:nth-child(2) {
+  margin-top: 0;
+}
+
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+/* Citations */
+
+d-article .citation {
+  color: inherit;
+  cursor: inherit;
+}
+
+div.hanging-indent{
+  margin-left: 1em; text-indent: -1em;
+}
+
+/* Citation hover box */
+
+.tippy-box[data-theme~=light-border] {
+  background-color: rgba(250, 250, 250, 0.95);
+}
+
+.tippy-content > p {
+  margin-bottom: 0;
+  padding: 2px;
+}
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Include appendix styles here so they can be overridden */
+
+d-appendix {
+  contain: layout style;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-top: 60px;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0,0,0,0.5);
+  padding-top: 60px;
+  padding-bottom: 48px;
+}
+
+d-appendix h3 {
+  grid-column: page-start / text-start;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.65);
+}
+
+d-appendix h3 + * {
+  margin-top: 1em;
+}
+
+d-appendix ol {
+  padding: 0 0 0 15px;
+}
+
+@media (min-width: 768px) {
+  d-appendix ol {
+    padding: 0 0 0 30px;
+    margin-left: -30px;
+  }
+}
+
+d-appendix li {
+  margin-bottom: 1em;
+}
+
+d-appendix a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+d-appendix > * {
+  grid-column: text;
+}
+
+d-appendix > d-footnote-list,
+d-appendix > d-citation-list,
+d-appendix > distill-appendix {
+  grid-column: screen;
+}
+
+/* Include footnote styles here so they can be overridden */
+
+d-footnote-list {
+  contain: layout style;
+}
+
+d-footnote-list > * {
+  grid-column: text;
+}
+
+d-footnote-list a.footnote-backlink {
+  color: rgba(0,0,0,0.3);
+  padding-left: 0.5em;
+}
+
+
+
+/* Anchor.js */
+
+.anchorjs-link {
+  /*transition: all .25s linear; */
+  text-decoration: none;
+  border-bottom: none;
+}
+*:hover > .anchorjs-link {
+  margin-left: -1.125em !important;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+.sidebar-section.custom {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.custom p {
+  margin-bottom: 0.5em;
+}
+
+/* Styles for listing layout (hide title) */
+.layout-listing d-title, .layout-listing .d-title {
+  display: none;
+}
+
+/* Styles for posts lists (not auto-injected) */
+
+
+.posts-with-sidebar {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.posts-list .description h2,
+.posts-list .description p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.posts-list .description h2 {
+  font-weight: 700;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.posts-list h2.post-tag {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 12px;
+}
+.posts-list {
+  margin-top: 60px;
+  margin-bottom: 24px;
+}
+
+.posts-list .post-preview {
+  text-decoration: none;
+  overflow: hidden;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 24px 0;
+}
+
+.post-preview-last {
+  border-bottom: none !important;
+}
+
+.posts-list .posts-list-caption {
+  grid-column: screen;
+  font-weight: 400;
+}
+
+.posts-list .post-preview h2 {
+  margin: 0 0 6px 0;
+  line-height: 1.2em;
+  font-style: normal;
+  font-size: 24px;
+}
+
+.posts-list .post-preview p {
+  margin: 0 0 12px 0;
+  line-height: 1.4em;
+  font-size: 16px;
+}
+
+.posts-list .post-preview .thumbnail {
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  position: relative;
+  max-width: 500px;
+}
+.posts-list .post-preview img {
+  width: 100%;
+  display: block;
+}
+
+.posts-list .metadata {
+  font-size: 12px;
+  line-height: 1.4em;
+  margin-bottom: 18px;
+}
+
+.posts-list .metadata > * {
+  display: inline-block;
+}
+
+.posts-list .metadata .publishedDate {
+  margin-right: 2em;
+}
+
+.posts-list .metadata .dt-authors {
+  display: block;
+  margin-top: 0.3em;
+  margin-right: 2em;
+}
+
+.posts-list .dt-tags {
+  display: block;
+  line-height: 1em;
+}
+
+.posts-list .dt-tags .dt-tag {
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0.3em 0.4em;
+  margin-right: 0.2em;
+  margin-bottom: 0.4em;
+  font-size: 60%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.posts-list img {
+  opacity: 1;
+}
+
+.posts-list img[data-src] {
+  opacity: 0;
+}
+
+.posts-more {
+  clear: both;
+}
+
+
+.posts-sidebar {
+  font-size: 16px;
+}
+
+.posts-sidebar h3 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.sidebar-section {
+  margin-bottom: 30px;
+}
+
+.categories ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.categories li {
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 0;
+}
+
+.categories li>a {
+  border-bottom: none;
+}
+
+.categories li>a:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.categories .active {
+  font-weight: 600;
+}
+
+.categories .category-count {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+
+@media(min-width: 768px) {
+  .posts-list .post-preview h2 {
+    font-size: 26px;
+  }
+  .posts-list .post-preview .thumbnail {
+    float: right;
+    width: 30%;
+    margin-bottom: 0;
+  }
+  .posts-list .post-preview .description {
+    float: left;
+    width: 45%;
+  }
+  .posts-list .post-preview .metadata {
+    float: left;
+    width: 20%;
+    margin-top: 8px;
+  }
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.5em;
+    font-size: 16px;
+  }
+  .posts-with-sidebar .posts-list {
+    float: left;
+    width: 75%;
+  }
+  .posts-with-sidebar .posts-sidebar {
+    float: right;
+    width: 20%;
+    margin-top: 60px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+.downlevel .posts-list .post-preview {
+  color: inherit;
+}
+
+
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // add anchors
+  if (window.anchors) {
+    window.anchors.options.placement = 'left';
+    window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+  }
+
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  // move refs into #references-listing
+  $('#references-listing').replaceWith($('#refs'));
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-contents a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('details, div.sourceCode, pre, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // remove code block used to force  highlighting css
+  $('.distill-force-highlighting-css').parent().remove();
+
+  // remove empty line numbers inserted by pandoc when using a
+  // custom syntax highlighting theme
+  $('code.sourceCode a:empty').remove();
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // article with toc class
+    $('.d-contents').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // add orcid ids
+    $('.authors-affiliations').find('.author').each(function(i, el) {
+      var orcid_id = front_matter.authors[i].orcidID;
+      if (orcid_id) {
+        var a = $('<a></a>');
+        a.attr('href', 'https://orcid.org/' + orcid_id);
+        var img = $('<img></img>');
+        img.addClass('orcid-id');
+        img.attr('alt', 'ORCID ID');
+        img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+        a.append(img);
+        $(this).append(a);
+      }
+    });
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // remove d-appendix and d-footnote-list local styles
+    $('d-appendix > style:first-child').remove();
+    $('d-footnote-list > style:first-child').remove();
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // hoverable references
+    $('span.citation[data-cites]').each(function() {
+      var refs = $(this).attr('data-cites').split(" ");
+      var refHtml = refs.map(function(ref) {
+        return "<p>" + $('#ref-' + ref).html() + "</p>";
+      }).join("\n");
+      window.tippy(this, {
+        allowHTML: true,
+        content: refHtml,
+        maxWidth: 500,
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start'
+      });
+    });
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-contents').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.distill-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<!--/radix_placeholder_distill-->
+  <script src="../../site_libs/header-attrs-2.13/header-attrs.js"></script>
+  <script src="../../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+  <link href="../../site_libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+  <script src="../../site_libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+  <script src="../../site_libs/wordcloud2-0.0.1/hover.js"></script>
+  <script src="../../site_libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Understanding student goals - a Topic Modeling approach","description":"Looking at student goals for emerging topics or themes.","authors":[{"author":"Jeanne McClure","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-27T00:00:00.000-05:00","citationText":"McClure, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="../../index.html" class="title">Jeanne McClure</a>
+<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
+</div>
+<div class="nav-right">
+<a href="../../index.html">About</a>
+<a href="../../projects.html">projects</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Understanding student goals - a Topic Modeling approach</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p>Looking at student goals for emerging topics or themes.</p>
+</div>
+
+<div class="d-byline">
+  Jeanne McClure  
+  
+<br/>2021-11-27
+</div>
+
+<div class="d-article">
+<h1 id="prepare">1 Prepare</h1>
+<h3 id="background">Background</h3>
+<p>While at my Graduate position in the Media and Education Technology
+Resource Center (METRC) we wanted to have an event that would get
+students into METRC. The idea was that students would come into METRC to
+hand write a yearly goal on a paper feather during October through
+November. The goals would then be combined into a collaborative wing
+mural that would be installed before Education Week so that students
+could come and take photos.</p>
+<h3 id="research-questions">Research Questions</h3>
+<ol type="1">
+<li>What are the Student goals about?</li>
+<li>How are student’s feeling about their Goals?</li>
+<li>How do we quantify what the Student Goals are about?</li>
+</ol>
+<h3 id="methods">Methods</h3>
+<p>Common Word Counts Text Mining IF - ITF Sentiment Analysis Topic
+Modeling</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readr.tidyverse.org'>readr</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/nalimilan/R.TeMiS'>SnowballC</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>topicmodels</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://www.structuraltopicmodel.com/'>stm</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/nikita-moor/ldatuning'>ldatuning</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://yihui.org/knitr/'>knitr</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyr.tidyverse.org'>tidyr</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>topicmodels</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/lchiffon/wordcloud2'>wordcloud2</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>vader</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h1 id="wrangle">2. Wrangle</h1>
+<p>Here we will ‘wrangle’ the data by <strong>a. Reading the
+Data</strong>, <strong>b. Data Reduction</strong> and <strong>c. Tidying
+the Data</strong> (Krumm et al., 2018).</p>
+<p>It shows that we have 213 observations and 3 variables.</p>
+<h3 id="a.-read-data">a. READ Data</h3>
+<p>Let’s read our data into our Environment and assign it to a variable
+name soar_data1.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soar_data1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"data/Soar-resposes.csv"</span><span class='op'>)</span>
+
+<span class='va'>soar_data1</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 215 x 3
+   Timestamp          Department             Goal                     
+   &lt;chr&gt;              &lt;chr&gt;                  &lt;chr&gt;                    
+ 1 11/9/2021 10:00:18 Distance Graduate TELS Deeper understanding of ~
+ 2 11/9/2021 10:00:46 Distance Graduate TELS Choose a dissertation to~
+ 3 11/9/2021 10:01:05 Distance Graduate TELS 4.0 Baby                 
+ 4 11/9/2021 10:01:16 Distance Graduate TELS To Graduate              
+ 5 11/9/2021 10:01:28 Distance Graduate TELS Finish my Book           
+ 6 11/9/2021 10:02:00 Graduate TELS          Learn about 3 topics and~
+ 7 11/9/2021 10:02:25 Graduate TELS          Reamin mentally, physica~
+ 8 11/9/2021 10:03:02 Graduate TELS          Balance of learning, bei~
+ 9 11/9/2021 10:03:22 Graduate TELS          To stay healthy and lear~
+10 11/9/2021 10:03:39 Graduate TELS          Better time management a~
+# ... with 205 more rows</code></pre>
+</div>
+<h3 id="b.-data-reduction">b. Data Reduction</h3>
+<p>The initial Soar Data shows that we have 213 observations and 3
+variables. However, we need to clean it up selecting only the students
+and adding a unique identifier.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#Clean Data to omit staff, include unique identifier</span>
+<span class='va'>soar_data2</span> <span class='op'>&lt;-</span> <span class='va'>soar_data1</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Department'</span>, <span class='st'>'Goal'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='co'># only select Department and the goal data</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Department</span> <span class='op'>==</span> <span class='st'>"Distance Graduate TELS"</span> <span class='op'>|</span> <span class='va'>Department</span> <span class='op'>==</span> <span class='st'>"Graduate TELS"</span>
+         <span class='op'>|</span> <span class='va'>Department</span> <span class='op'>==</span> <span class='st'>"ELPHD"</span> <span class='op'>|</span> <span class='va'>Department</span> <span class='op'>==</span> <span class='st'>"Distance ELPHD"</span> <span class='op'>|</span> 
+           <span class='va'>Department</span> <span class='op'>==</span> <span class='st'>"Graduate STEM"</span> <span class='op'>|</span> <span class='va'>Department</span> <span class='op'>==</span> <span class='st'>"Undergraduate TELS"</span> <span class='op'>|</span> 
+           <span class='va'>Department</span> <span class='op'>==</span> <span class='st'>"Undergraduate STEM"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>  <span class='co'>#filter out departments to omit staff</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Department</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a></span><span class='op'>(</span><span class='op'>)</span>
+  
+
+<span class='va'>soar_data2</span> <span class='op'>&lt;-</span> <span class='va'>soar_data2</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>51</span>, <span class='op'>]</span> <span class='co'># delete row 51 that contains "N/A" for goal</span>
+
+<span class='va'>soar_data2</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>rowid_to_column</a></span><span class='op'>(</span><span class='va'>soar_data2</span>, <span class='st'>"index"</span><span class='op'>)</span> <span class='co'>#add unique identifier</span>
+
+<span class='va'>soar_data2</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 x 3
+# Groups:   Department [2]
+  index Department             Goal                                   
+  &lt;int&gt; &lt;chr&gt;                  &lt;chr&gt;                                  
+1     1 Distance Graduate TELS Deeper understanding of Quantitative a~
+2     2 Distance Graduate TELS Choose a dissertation topic that makes~
+3     3 Distance Graduate TELS 4.0 Baby                               
+4     4 Distance Graduate TELS To Graduate                            
+5     5 Distance Graduate TELS Finish my Book                         
+6     6 Graduate TELS          Learn about 3 topics and become more c~</code></pre>
+</div>
+<p>I quickly visualize the data looking at all occurrences and the
+percentage of participation for each department with the VTREE
+package.</p>
+<p>We see that students from the Undergraduate department with the
+highest participation rate is Undergraduate TELS at 47% participation
+rate. The highest participation rate in the Graduate department is also
+from TELS at 14% of participants. The smallest participation rates are
+in Graduate STEM and all DE departments. We can quickly conclude that
+Undergraduate students in general frequent METRC the most out of the
+College of Education from the event data.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/nbarrowman/vtree'>vtree</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/vtree/man/vtree.html'>vtree</a></span><span class='op'>(</span><span class='va'>soar_data2</span>, <span class='st'>"Department"</span>, horiz<span class='op'>=</span><span class='cn'>FALSE</span>, palette <span class='op'>=</span> <span class='fl'>4</span>, sortfill <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="C:/Users/Jeanne/AppData/Local/Temp/RtmpAZHacy/vtree001.png" width="1000" /></p>
+</div>
+<h3 id="c.-tidytext">c. TidyText</h3>
+<p>Using <a href="https://vita.had.co.nz/papers/tidy-data.pdf">Wickham
+2014</a>, Tidy principleswe tokenize our data making each variable a
+column, each observation a row and each type of observational unit is a
+table with:</p>
+<ol type="a">
+<li><p>unnest_tokens() that splits a column into tokens</p></li>
+<li><p>anti_join() returns all rows from x without a match in y and
+remove stop word.</p></li>
+</ol>
+<h3 id="tokenize-our-data">tokenize our data</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soardata2_df</span> <span class='op'>&lt;-</span> <span class='va'>soar_data2</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='co'>#create new tokenize data frame</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>output <span class='op'>=</span> <span class='va'>word</span>, input <span class='op'>=</span> <span class='va'>Goal</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter-joins.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stop_words</span>, by <span class='op'>=</span> <span class='st'>"word"</span><span class='op'>)</span> <span class='co'># remove all stop words</span>
+</code></pre>
+</div>
+</div>
+<p>I noticed I wrangled out my unique identifier. So, I created a new
+column to count up later on with the variable name ‘number.’</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soardata2_df</span> <span class='op'>&lt;-</span> <span class='va'>soardata2_df</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>number <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/ranking.html'>row_number</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># add a new column named number to be used as the unique identifier</span>
+
+<span class='va'>soardata2_df</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 x 3
+# Groups:   Department [1]
+  Department             word          number
+  &lt;chr&gt;                  &lt;chr&gt;          &lt;int&gt;
+1 Distance Graduate TELS deeper             1
+2 Distance Graduate TELS understanding      2
+3 Distance Graduate TELS quantitative       3
+4 Distance Graduate TELS qualitative        4
+5 Distance Graduate TELS research           5
+6 Distance Graduate TELS methods            6</code></pre>
+</div>
+<h1 id="explore">3. Explore</h1>
+<p>Let’s explore our data looking for common words together, and then
+filter out sentiments.</p>
+<h2 id="count-tokenized-words">Count Tokenized Words</h2>
+<p>Let’s count the tokenize words. It looks as though
+<strong>Students</strong>, <strong>Learn</strong>, and
+<strong>Goal</strong> are at the top three common words in the Soar Data
+and we have a lot of words that only appeared once or twice. What was
+interesting as most are unique words. I may not stem the words then.</p>
+<h3 id="word-cloud-of-common-words-in-all-departments">Word Cloud of
+Common Words in ALL Departments</h3>
+<p>Noticing that “student” and “learn” are at the top of the list.
+“Goal” was part of the prompt so that word being in the top three is not
+a surprise.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soardata1_df_counts</span> <span class='op'>&lt;-</span> <span class='va'>soardata2_df</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='co'># create new variable for counts</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span> <span class='op'>(</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>  <span class='co'>#ungroup the tokenize data to create a wordcloud</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/wordcloud2/man/wordcloud2.html'>wordcloud2</a></span><span class='op'>(</span><span class='va'>soardata1_df_counts</span><span class='op'>)</span>
+</code></pre>
+</div>
+<div id="htmlwidget-f261bfd0c023ef2a3e7f" style="width:624px;height:384px;" class="wordcloud2 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f261bfd0c023ef2a3e7f">{"x":{"word":["students","learn","goal","teacher","classroom","field","graduate","teaching","future","semester","stay","time","connections","finish","pass","placement","educator","grades","grow","positive","classes","learning","build","confident","create","knowledge","growth","lesson","management","people","strong","teach","teachers","care","complete","culturally","dissertation","experience","experiences","feel","impact","internship","mental","mindset","motivated","relationships","responsive","school","skills","successful","4.0","balance","career","ced","class","comfortable","community","continue","design","environment","gain","happy","health","healthy","improve","instructional","job","meet","mentally","peers","plans","program","resources","schools","start","strategies","successfully","support","top","week","2022","apply","box","business","calculus","change","children","classmates","comfort","confidence","creating","degree","develop","education","emotionally","encourage","engage","engineering","enjoy","excited","explore","family","finding","focus","foster","friends","fun","goals","hope","ideas","influence","life","list","local","ncsu","network","obtain","partners","passing","person","physically","plan","process","proud","readings","remain","research","safe","student","succeed","summer","survive","taking","topics","voice","write","zone","1","12","141","185","2021","2023","3","3.0","3.8","4","5","8","abilities","ability","abroad","academic","accomplished","accountable","act","active","actively","adapt","advocate","anxieties","assistance","awesome","b's","baby","bench","beore","betterment","book","books","busyness","calling","catch","chapters","choose","civil","coda","cohort","collaborate","collect","college","communicate","comps","connect","conscious","continueing","contribute","counseling","courses","crate","createcreate","creative","credits","critically","cry","culture","curious","daily","dean's","deans","decisions","deeper","difference","disabilities","discover","dr","drive","dropout","ed","edtpa","educational","educators","effective","effectively","effort","elementary","engaging","enter","entire","equitable","establish","europe","event","exam","excellent","exciting","expand","experienced","feeling","feels","fellowship","fieldwork","figure","fills","fixed","focal","front","fulfilled","games","gen","gpa","grade","graduation","hands","hard","highly","hold","honors","hoping","hours","human","identity","inbox","inclusion","incorporate","inspiration","inspire","interactive","involved","j.s","join","journey","joyful","kamoru","keeping","key","kids","knowing","land","learnhow","lifestyle","lines","lives","ma","main","maintain","maintaining","makes","matters","maximize","meaning","mentor","mercedes","methods","minded","nc","nce","nicer","online","organization","organized","orking","overthink","overwhelm","overwhelmed","passion","patient","perfect","performance","persevere","personal","phd","physical","piece","planning","planted","play","plenty","poder","positively","potential","practicing","prepared","preparing","preservice","priority","productive","profession","professional","professors","progress","promote","prospectus","provide","pta","public","purpose","push","qualitative","quantitative","quickly","read","reamin","reliable","researcher","respectful","respirar","responsibilities","sanity","schedule","science","selfcare","sessions","si","sleep","smile","source","speaking","spend","spiritally","sports","spread","stable","started","starting","stats","stress","stronger","styudents","subbing","supportive","survival","sweat","synthesize","talk","terms","times","tools","topic","travel","truest","trust","understand","understanding","unrequired","void","wlak","world","writer","writting","wrong"],"freq":[26,25,20,16,14,14,12,12,11,11,10,10,9,9,9,9,8,8,8,8,7,7,6,6,6,6,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":6.92307692307692,"backgroundColor":"white","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+</div>
+<h3 id="common-words-by-department">Common Words by Department</h3>
+<p>It is hard to visualize the data in a table form.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soardata1_df_counts</span> <span class='op'>&lt;-</span> <span class='va'>soardata2_df</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='co'># create new variable for counts</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='va'>soardata1_df_counts</span> 
+</code></pre>
+</div>
+<pre><code># A tibble: 511 x 3
+# Groups:   Department [7]
+   Department         word            n
+   &lt;chr&gt;              &lt;chr&gt;       &lt;int&gt;
+ 1 Undergraduate TELS students       20
+ 2 Undergraduate TELS learn          19
+ 3 Undergraduate TELS field          14
+ 4 Undergraduate TELS teacher        13
+ 5 Undergraduate TELS classroom      12
+ 6 Undergraduate TELS connections     9
+ 7 Undergraduate TELS placement       9
+ 8 Undergraduate STEM graduate        8
+ 9 Undergraduate TELS semester        8
+10 Undergraduate TELS teaching        8
+# ... with 501 more rows</code></pre>
+</div>
+<p>Maybe a bar graph would be a better visualization viewing each
+departments most common words.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soarviz_1</span> <span class='op'>&lt;-</span> <span class='va'>soardata2_df</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>n</span> <span class='op'>&gt;</span> <span class='fl'>10</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='va'>word</span>, fill <span class='op'>=</span> <span class='va'>Department</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> 
+
+
+<span class='va'>soarviz_1</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$data
+# A tibble: 5 x 4
+# Groups:   Department [1]
+  Department         word          n .group
+  &lt;chr&gt;              &lt;fct&gt;     &lt;int&gt;  &lt;int&gt;
+1 Undergraduate TELS students     20      1
+2 Undergraduate TELS learn        19      1
+3 Undergraduate TELS field        14      1
+4 Undergraduate TELS teacher      13      1
+5 Undergraduate TELS classroom    12      1
+
+$layers
+$layers[[1]]
+geom_col: width = NULL, na.rm = FALSE
+stat_identity: na.rm = FALSE
+position_stack 
+
+
+$scales
+&lt;ggproto object: Class ScalesList, gg&gt;
+    add: function
+    clone: function
+    find: function
+    get_scales: function
+    has_scale: function
+    input: function
+    n: function
+    non_position_scales: function
+    scales: list
+    super:  &lt;ggproto object: Class ScalesList, gg&gt;
+
+$mapping
+Aesthetic mapping: 
+* `x`    -&gt; `n`
+* `y`    -&gt; `word`
+* `fill` -&gt; `Department`
+
+$theme
+list()
+
+$coordinates
+&lt;ggproto object: Class CoordCartesian, Coord, gg&gt;
+    aspect: function
+    backtransform_range: function
+    clip: on
+    default: TRUE
+    distance: function
+    expand: TRUE
+    is_free: function
+    is_linear: function
+    labels: function
+    limits: list
+    modify_scales: function
+    range: function
+    render_axis_h: function
+    render_axis_v: function
+    render_bg: function
+    render_fg: function
+    setup_data: function
+    setup_layout: function
+    setup_panel_guides: function
+    setup_panel_params: function
+    setup_params: function
+    train_panel_guides: function
+    transform: function
+    super:  &lt;ggproto object: Class CoordCartesian, Coord, gg&gt;</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>words_by_Department</span> <span class='op'>&lt;-</span> <span class='va'>soardata1_df_counts</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>Department</span>, <span class='va'>word</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>total_words</span> <span class='op'>&lt;-</span> <span class='va'>words_by_Department</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Department</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>total <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>words_by_Department</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>words_by_Department</span>, <span class='va'>total_words</span><span class='op'>)</span>
+
+<span class='va'>words_by_Department</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 511 x 4
+   Department             word         n total
+   &lt;chr&gt;                  &lt;chr&gt;    &lt;int&gt; &lt;int&gt;
+ 1 Distance ELPHD         2023         1     4
+ 2 Distance ELPHD         dr           1     4
+ 3 Distance ELPHD         kamoru       1     4
+ 4 Distance ELPHD         mercedes     1     4
+ 5 Distance Graduate TELS 4.0          1    18
+ 6 Distance Graduate TELS baby         1    18
+ 7 Distance Graduate TELS book         1    18
+ 8 Distance Graduate TELS choose       1    18
+ 9 Distance Graduate TELS curious      1    18
+10 Distance Graduate TELS deeper       1    18
+# ... with 501 more rows</code></pre>
+</div>
+<p>Let’s explore the Zipfs law</p>
+<p>From <a href="https://www.tidytextmining.com/tfidf.html">Text Mining
+with R</a> - Zipf’s law states that the frequency that a word appears is
+inversely proportional to its rank.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>freq_by_rank</span> <span class='op'>&lt;-</span> <span class='va'>words_by_Department</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Department</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>rank <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/ranking.html'>row_number</a></span><span class='op'>(</span><span class='op'>)</span>, 
+         `term frequency` <span class='op'>=</span> <span class='va'>n</span><span class='op'>/</span><span class='va'>total</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tf_idf</span> <span class='op'>&lt;-</span> <span class='va'>words_by_Department</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/bind_tf_idf.html'>bind_tf_idf</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>Department</span>, <span class='va'>n</span><span class='op'>)</span> 
+
+
+<span class='va'>tf_idf</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 511 x 7
+   Department             word         n total     tf   idf tf_idf
+   &lt;chr&gt;                  &lt;chr&gt;    &lt;int&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Distance ELPHD         2023         1     4 0.25    1.95 0.486 
+ 2 Distance ELPHD         dr           1     4 0.25    1.95 0.486 
+ 3 Distance ELPHD         kamoru       1     4 0.25    1.95 0.486 
+ 4 Distance ELPHD         mercedes     1     4 0.25    1.95 0.486 
+ 5 Distance Graduate TELS 4.0          1    18 0.0556  1.25 0.0696
+ 6 Distance Graduate TELS baby         1    18 0.0556  1.95 0.108 
+ 7 Distance Graduate TELS book         1    18 0.0556  1.95 0.108 
+ 8 Distance Graduate TELS choose       1    18 0.0556  1.95 0.108 
+ 9 Distance Graduate TELS curious      1    18 0.0556  1.95 0.108 
+10 Distance Graduate TELS deeper       1    18 0.0556  1.95 0.108 
+# ... with 501 more rows</code></pre>
+</div>
+Let’s look at high frequency words in each department
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tf_idf</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>total</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>tf_idf</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 511 x 6
+   Department             word         n     tf   idf tf_idf
+   &lt;chr&gt;                  &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Distance ELPHD         2023         1 0.25    1.95  0.486
+ 2 Distance ELPHD         dr           1 0.25    1.95  0.486
+ 3 Distance ELPHD         kamoru       1 0.25    1.95  0.486
+ 4 Distance ELPHD         mercedes     1 0.25    1.95  0.486
+ 5 Distance Graduate TELS baby         1 0.0556  1.95  0.108
+ 6 Distance Graduate TELS book         1 0.0556  1.95  0.108
+ 7 Distance Graduate TELS choose       1 0.0556  1.95  0.108
+ 8 Distance Graduate TELS curious      1 0.0556  1.95  0.108
+ 9 Distance Graduate TELS deeper       1 0.0556  1.95  0.108
+10 Distance Graduate TELS fills        1 0.0556  1.95  0.108
+# ... with 501 more rows</code></pre>
+</div>
+<h1 id="model">Model</h1>
+<p>Here we will model our word occurances, Bigrams, Trigrams, Sentiment
+and then a Topic Model.</p>
+<p>We are looking to visusalize the 10 frequency words from our term
+frequency data. The visualization did not work because the data is so
+small there are many words in the top 5 count so they are
+overlapping.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://forcats.tidyverse.org'>forcats</a></span><span class='op'>)</span>
+
+
+
+<span class='va'>tf_idf</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Department</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_max</a></span><span class='op'>(</span><span class='va'>tf_idf</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>tf_idf</span>, <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_reorder.html'>fct_reorder</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>tf_idf</span><span class='op'>)</span>, fill <span class='op'>=</span> <span class='va'>Department</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>Department</span>, ncol <span class='op'>=</span> <span class='fl'>3</span>, scales <span class='op'>=</span> <span class='st'>"free"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"tf-idf"</span>, y <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="soar-project_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
+</div>
+<p>I did not have more luck with a histogram..</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>words_by_Department</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>/</span><span class='va'>total</span>, fill <span class='op'>=</span> <span class='va'>Department</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>Department</span>, ncol <span class='op'>=</span> <span class='fl'>3</span>, scales <span class='op'>=</span> <span class='st'>"free_y"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="soar-project_files/figure-html5/unnamed-chunk-16-1.png" width="624" /></p>
+</div>
+<h3 id="bigram">Bigram</h3>
+<p>By tokenizing n-grams we can check out the bigrams to see if they are
+of any help with noticing themes.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soardata2_bigrams</span> <span class='op'>&lt;-</span> <span class='va'>soar_data2</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>output <span class='op'>=</span> <span class='va'>word</span>, input <span class='op'>=</span> <span class='va'>Goal</span>, token <span class='op'>=</span> <span class='st'>"ngrams"</span>, n <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter-joins.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stop_words</span>, by <span class='op'>=</span> <span class='st'>"word"</span><span class='op'>)</span>
+
+<span class='va'>soardata2_bigrams_counts</span> <span class='op'>&lt;-</span> <span class='va'>soardata2_bigrams</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='va'>soardata2_bigrams_counts</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1,618 x 3
+# Groups:   Department [7]
+   Department         word                 n
+   &lt;chr&gt;              &lt;chr&gt;            &lt;int&gt;
+ 1 Undergraduate TELS to be               15
+ 2 Undergraduate TELS in my               12
+ 3 Undergraduate TELS i want              11
+ 4 Undergraduate TELS want to             10
+ 5 Undergraduate TELS field placement      9
+ 6 Undergraduate TELS in the               9
+ 7 Undergraduate TELS my field             9
+ 8 Undergraduate TELS connections with     8
+ 9 Undergraduate TELS how to               8
+10 Undergraduate TELS of my                8
+# ... with 1,608 more rows</code></pre>
+</div>
+<p>My original bigram code did not provide good results I will use the
+tidyr’s separate(), which splits a column into multiple based on a
+delimiter. This process shows much better results. Working in the CED I
+know that a growth mindset was being taught to Early Elmentary students,
+additionally students started field placements in the Fall and Spring.
+Many of the goals included ideal bigrams of what we would imagine to see
+in the College of Ed.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soardata2_bigrams2</span> <span class='op'>&lt;-</span> <span class='va'>soar_data2</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>bigram</span>, <span class='va'>Goal</span>, token <span class='op'>=</span> <span class='st'>"ngrams"</span>, n <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/separate.html'>separate</a></span><span class='op'>(</span><span class='va'>bigram</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"word1"</span>, <span class='st'>"word2"</span><span class='op'>)</span>, sep <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='va'>word1</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>stop_words</span><span class='op'>$</span><span class='va'>word</span>,
+         <span class='op'>!</span><span class='va'>word2</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>stop_words</span><span class='op'>$</span><span class='va'>word</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/unite.html'>unite</a></span><span class='op'>(</span><span class='va'>bigram</span>, <span class='va'>word1</span>, <span class='va'>word2</span>, sep <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>bigram</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='va'>soardata2_bigrams2</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 248 x 3
+# Groups:   Department [7]
+   Department         bigram                    n
+   &lt;chr&gt;              &lt;chr&gt;                 &lt;int&gt;
+ 1 Undergraduate TELS field placement           9
+ 2 Undergraduate TELS growth mindset            3
+ 3 Undergraduate TELS mental health             3
+ 4 Graduate TELS      time management           2
+ 5 Undergraduate STEM comfort zone              2
+ 6 Undergraduate STEM design process            2
+ 7 Undergraduate STEM time management           2
+ 8 Undergraduate TELS build relationships       2
+ 9 Undergraduate TELS classroom finish          2
+10 Undergraduate TELS culturally responsive     2
+# ... with 238 more rows</code></pre>
+</div>
+<h3 id="trigram">Trigram</h3>
+<p>Running a trigram did not produce a result that pulls out any new
+themes.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soardata2_trigrams</span> <span class='op'>&lt;-</span> <span class='va'>soar_data2</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>trigram</span>, <span class='va'>Goal</span>, token <span class='op'>=</span> <span class='st'>"ngrams"</span>, n <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/separate.html'>separate</a></span><span class='op'>(</span><span class='va'>trigram</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"word1"</span>, <span class='st'>"word2"</span>, <span class='st'>"word3"</span><span class='op'>)</span>, sep <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='va'>word1</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>stop_words</span><span class='op'>$</span><span class='va'>word</span>,
+         <span class='op'>!</span><span class='va'>word2</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>stop_words</span><span class='op'>$</span><span class='va'>word</span>,
+         <span class='op'>!</span><span class='va'>word3</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>stop_words</span><span class='op'>$</span><span class='va'>word</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/unite.html'>unite</a></span><span class='op'>(</span><span class='va'>trigram</span>, <span class='va'>word1</span>, <span class='va'>word2</span>, <span class='va'>word3</span>, sep <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>trigram</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='va'>soardata2_trigrams</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 84 x 3
+# Groups:   Department [7]
+   Department             trigram                             n
+   &lt;chr&gt;                  &lt;chr&gt;                           &lt;int&gt;
+ 1 Undergraduate TELS     field placement classroom           2
+ 2 Undergraduate TELS     field placement students            2
+ 3 Distance ELPHD         dr mercedes kamoru                  1
+ 4 Distance ELPHD         mercedes kamoru 2023                1
+ 5 Distance Graduate TELS qualitative research methods        1
+ 6 Distance Graduate TELS research methods choose             1
+ 7 Distance Graduate TELS void 4.0 baby                       1
+ 8 ELPHD                  culture responsive teaching         1
+ 9 ELPHD                  incorporate culture responsive      1
+10 ELPHD                  spiritally emotionally mentally     1
+# ... with 74 more rows</code></pre>
+</div>
+<h3 id="sentiment-analysis">SENTIMENT ANALYSIS</h3>
+<p>Using the {tidytext} package we can analyze sentiments with
+<strong>lexicons,</strong> <a
+href="https://cbail.github.io/textasdata/dictionary-methods/rmarkdown/Dictionary-Based_Text_Analysis.html">sometimes
+referred to as dictionaries</a>.</p>
+<ul>
+<li><p><strong>AFINN</strong> from Finn Årup Nielsen - assigns words
+with a score that runs between -5 and 5, with negative scores indicating
+negative sentiment and positive scores indicating positive
+sentiment.</p></li>
+<li><p><strong>bing</strong> from Bing Liu and collaborators -
+categorizes words in a binary fashion into positive and negative
+categories, and</p></li>
+<li><p><strong>nrc</strong> from Saif Mohammad and Peter Turney.
+-categorizes words in a binary fashion (“yes”/“no”) into categories of
+positive, negative, anger, anticipation, disgust, fear, joy, sadness,
+surprise, and trust.</p></li>
+</ul>
+<p>It will be intersting to see if what emotions the students have in
+their written goals. Additionally comparing a lexicon for positive and
+negative sentiment.</p>
+<h4 id="load-sentiment-lexicons">Load Sentiment Lexicons</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"afinn"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 2,477 x 2
+   word       value
+   &lt;chr&gt;      &lt;dbl&gt;
+ 1 abandon       -2
+ 2 abandoned     -2
+ 3 abandons      -2
+ 4 abducted      -2
+ 5 abduction     -2
+ 6 abductions    -2
+ 7 abhor         -3
+ 8 abhorred      -3
+ 9 abhorrent     -3
+10 abhors        -3
+# ... with 2,467 more rows</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"bing"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6,786 x 2
+   word        sentiment
+   &lt;chr&gt;       &lt;chr&gt;    
+ 1 2-faces     negative 
+ 2 abnormal    negative 
+ 3 abolish     negative 
+ 4 abominable  negative 
+ 5 abominably  negative 
+ 6 abominate   negative 
+ 7 abomination negative 
+ 8 abort       negative 
+ 9 aborted     negative 
+10 aborts      negative 
+# ... with 6,776 more rows</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"nrc"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 13,875 x 2
+   word        sentiment
+   &lt;chr&gt;       &lt;chr&gt;    
+ 1 abacus      trust    
+ 2 abandon     fear     
+ 3 abandon     negative 
+ 4 abandon     sadness  
+ 5 abandoned   anger    
+ 6 abandoned   fear     
+ 7 abandoned   negative 
+ 8 abandoned   sadness  
+ 9 abandonment anger    
+10 abandonment fear     
+# ... with 13,865 more rows</code></pre>
+</div>
+<p>Using the <em>“Bing Lexicon”</em> the total “Soar Data” shows 8
+negative polarity words and 102 positive polarity words. This means that
+there are 94 more positive than negative words in this text.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>bing_tokens</span> <span class='op'>&lt;-</span> <span class='va'>soardata2_df</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"bing"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='co'># pull out only sentiment words</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>sentiment</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='co'># count the # of positive &amp; negative words</span>
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/spread.html'>spread</a></span><span class='op'>(</span><span class='va'>sentiment</span>, <span class='va'>n</span>, fill <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='co'># made data wide rather than narrow</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>sentiment <span class='op'>=</span> <span class='va'>positive</span> <span class='op'>-</span> <span class='va'>negative</span><span class='op'>)</span> <span class='co'># # of positive words - # of negative owrds</span>
+
+<span class='va'>bing_tokens</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 5 x 4
+# Groups:   Department [5]
+  Department         negative positive sentiment
+  &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 ELPHD                     0        6         6
+2 Graduate STEM             0        3         3
+3 Graduate TELS             0        8         8
+4 Undergraduate STEM        6       22        16
+5 Undergraduate TELS        2       63        61</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>bing_word_counts</span> <span class='op'>&lt;-</span> <span class='va'>soardata2_df</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"bing"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>sentiment</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='va'>bing_word_counts</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 83 x 4
+   Department         word        sentiment     n
+   &lt;chr&gt;              &lt;chr&gt;       &lt;chr&gt;     &lt;int&gt;
+ 1 Undergraduate TELS positive    positive      7
+ 2 Undergraduate TELS confident   positive      4
+ 3 Undergraduate TELS strong      positive      4
+ 4 Undergraduate TELS successful  positive      4
+ 5 Undergraduate TELS comfortable positive      3
+ 6 Undergraduate TELS gain        positive      3
+ 7 Undergraduate TELS motivated   positive      3
+ 8 Graduate TELS      healthy     positive      2
+ 9 Undergraduate STEM comfort     positive      2
+10 Undergraduate STEM support     positive      2
+# ... with 73 more rows</code></pre>
+</div>
+<p>We can look at how much each word contributed to each sentiment</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>bing_word_counts</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>sentiment</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_max</a></span><span class='op'>(</span><span class='va'>n</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='va'>word</span>, fill <span class='op'>=</span> <span class='va'>sentiment</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>sentiment</span>, scales <span class='op'>=</span> <span class='st'>"free_y"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Contribution to sentiment"</span>,
+       y <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="soar-project_files/figure-html5/unnamed-chunk-25-1.png" width="624" /></p>
+</div>
+<p>Using the <em>“NRC Lexicon”</em> the total “Soar Data” shows 8
+negative polarity words and 223 positive polarity words. This means that
+there are 215 more positive than negative words in this text. The most
+common sentiment was with “anticipation at 89 words and”joy” at 77
+words.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>nrc_tokens</span> <span class='op'>&lt;-</span> <span class='va'>soardata2_df</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"nrc"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='co'># pull out only sentiment words</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>sentiment</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='co'># count the # of positive &amp; negative words</span>
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/spread.html'>spread</a></span><span class='op'>(</span><span class='va'>sentiment</span>, <span class='va'>n</span>, fill <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='co'># made data wide rather than narrow</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>sentiment <span class='op'>=</span> <span class='va'>positive</span> <span class='op'>-</span> <span class='va'>negative</span><span class='op'>)</span> <span class='co'># # of positive words - # of negative owrds</span>
+
+<span class='va'>nrc_tokens</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 x 12
+# Groups:   Department [6]
+  Department  anger anticipation disgust  fear   joy negative positive
+  &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 Distance G~     0            0       0     0     1        0        2
+2 ELPHD           0            2       0     0     2        0        5
+3 Graduate S~     0            3       0     1     3        0        7
+4 Graduate T~     0            9       0     1     7        0       31
+5 Undergradu~     1           23       1     5    20        6       45
+6 Undergradu~     0           52       0     2    44        2      133
+# ... with 4 more variables: sadness &lt;dbl&gt;, surprise &lt;dbl&gt;,
+#   trust &lt;dbl&gt;, sentiment &lt;dbl&gt;</code></pre>
+</div>
+<p>Let’s quickly look at the most common joy words in the soar data that
+are associated with joy in the nrc.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>nrc_joy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"nrc"</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sentiment</span> <span class='op'>==</span> <span class='st'>"joy"</span><span class='op'>)</span>
+
+<span class='va'>joysoar_nrc</span> <span class='op'>&lt;-</span> <span class='va'>soardata2_df</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>nrc_joy</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='va'>joysoar_nrc</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 53 x 3
+# Groups:   Department [6]
+   Department         word           n
+   &lt;chr&gt;              &lt;chr&gt;      &lt;int&gt;
+ 1 Undergraduate TELS create         5
+ 2 Undergraduate TELS confident      4
+ 3 Undergraduate TELS grow           4
+ 4 Undergraduate TELS successful     4
+ 5 Undergraduate TELS teach          4
+ 6 Undergraduate TELS gain           3
+ 7 Graduate TELS      grow           2
+ 8 Undergraduate STEM comfort        2
+ 9 Undergraduate STEM grow           2
+10 Undergraduate TELS excited        2
+# ... with 43 more rows</code></pre>
+</div>
+<p>Looking also at the negative sentiments. This looks strange and</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>nrc_negative</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"nrc"</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sentiment</span> <span class='op'>==</span> <span class='st'>"negative"</span><span class='op'>)</span>
+
+<span class='va'>negativesoar_nrc</span> <span class='op'>&lt;-</span> <span class='va'>soardata2_df</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>nrc_negative</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='va'>negativesoar_nrc</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 8 x 3
+# Groups:   Department [2]
+  Department         word            n
+  &lt;chr&gt;              &lt;chr&gt;       &lt;int&gt;
+1 Undergraduate STEM cry             1
+2 Undergraduate STEM feeling         1
+3 Undergraduate STEM influence       1
+4 Undergraduate STEM overwhelm       1
+5 Undergraduate STEM overwhelmed     1
+6 Undergraduate STEM stress          1
+7 Undergraduate TELS influence       1
+8 Undergraduate TELS wrong           1</code></pre>
+</div>
+<p>Let’s use use the <strong>filter()</strong>,
+<strong>select()</strong> and <strong>grepl()</strong> function to
+select just our goals column and filter out responses that contain some
+of the negative words shown.</p>
+<p>Here we can see that feeling in near fulfilled maybe not so
+negative</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soar_negative_quotes</span> <span class='op'>&lt;-</span> <span class='va'>soar_data2</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Goal</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grepl</a></span><span class='op'>(</span><span class='st'>'feeling'</span>, <span class='va'>Goal</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>soar_negative_quotes</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1 x 2
+# Groups:   Department [1]
+  Department         Goal                              
+  &lt;chr&gt;              &lt;chr&gt;                             
+1 Undergraduate STEM end the semester feeling fulfilled</code></pre>
+</div>
+<p>I am not sure that this is necessarily a negative sentiment either
+since the goals was not to do something.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soar_negative_quotes</span> <span class='op'>&lt;-</span> <span class='va'>soar_data2</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Goal</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grepl</a></span><span class='op'>(</span><span class='st'>'cry'</span>, <span class='va'>Goal</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>soar_negative_quotes</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1 x 2
+# Groups:   Department [1]
+  Department         Goal                           
+  &lt;chr&gt;              &lt;chr&gt;                          
+1 Undergraduate STEM Not cry in front of my students</code></pre>
+</div>
+<p>Let’s look at one more negative nrc sentiment and use the * operator
+to look for word stems.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soar_negative_quotes</span> <span class='op'>&lt;-</span> <span class='va'>soar_data2</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Goal</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grepl</a></span><span class='op'>(</span><span class='st'>'overwhelm*'</span>, <span class='va'>Goal</span><span class='op'>)</span><span class='op'>)</span> <span class='co'>#look for word stems</span>
+
+<span class='va'>soar_negative_quotes</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 2 x 2
+# Groups:   Department [1]
+  Department         Goal                                             
+  &lt;chr&gt;              &lt;chr&gt;                                            
+1 Undergraduate STEM Not overthink and get overwhelmed but to trust m~
+2 Undergraduate STEM To get good grades and not overwhelm myself.     </code></pre>
+</div>
+<p>We can see that overall most of the sentiments in the goals data are
+positive for most Departments. After looking at the phrases that
+correlated with the negative words I am not sure with hand coding those
+would be considered negative. The <strong>ncr sentiment</strong> showed
+a larger number of words vs <strong>Bing</strong>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soar_nrc_sentiment</span> <span class='op'>&lt;-</span> <span class='va'>soardata2_df</span><span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"nrc"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>Department</span>, index <span class='op'>=</span> <span class='va'>number</span> <span class='op'><a href='https://rdrr.io/r/base/Arithmetic.html'>%/%</a></span> <span class='fl'>5</span>, <span class='va'>sentiment</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>sentiment</span>, values_from <span class='op'>=</span> <span class='va'>n</span>, values_fill <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>sentiment <span class='op'>=</span> <span class='va'>positive</span> <span class='op'>-</span> <span class='va'>negative</span><span class='op'>)</span>
+  
+<span class='va'>soar_nrc_sentiment</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 140 x 13
+# Groups:   Department [6]
+   Department   index positive trust   joy anticipation surprise  fear
+   &lt;chr&gt;        &lt;dbl&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt;        &lt;int&gt;    &lt;int&gt; &lt;int&gt;
+ 1 Distance Gr~     0        1     1     0            0        0     0
+ 2 Distance Gr~     3        1     0     1            0        0     0
+ 3 ELPHD            0        1     1     1            1        0     0
+ 4 ELPHD            1        1     1     1            0        1     0
+ 5 ELPHD            2        2     1     0            1        0     0
+ 6 ELPHD            4        1     0     0            0        0     0
+ 7 Graduate ST~     0        2     1     0            0        0     0
+ 8 Graduate ST~     1        3     1     1            0        0     0
+ 9 Graduate ST~     2        2     2     2            2        0     0
+10 Graduate ST~     4        0     0     0            1        0     0
+# ... with 130 more rows, and 5 more variables: anger &lt;int&gt;,
+#   disgust &lt;int&gt;, negative &lt;int&gt;, sadness &lt;int&gt;, sentiment &lt;int&gt;</code></pre>
+</div>
+<p>Let’s plot negative vs positive sentiment by department with NRC</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>soar_nrc_sentiment</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>index</span>, <span class='va'>sentiment</span>, fill <span class='op'>=</span> <span class='va'>Department</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'>#use index as the X and sentiment as y by department</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># don;t show the legend</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>Department</span>, ncol <span class='op'>=</span> <span class='fl'>2</span>, scales <span class='op'>=</span> <span class='st'>"free_x"</span><span class='op'>)</span>  <span class='co'># put in 2 columns</span>
+</code></pre>
+</div>
+<p><img src="soar-project_files/figure-html5/unnamed-chunk-33-1.png" width="624" /></p>
+</div>
+<p>Let us see what the Bing visualization looks like.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soar_bing_sentiment</span> <span class='op'>&lt;-</span> <span class='va'>soardata2_df</span><span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"bing"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>Department</span>, index <span class='op'>=</span> <span class='va'>number</span> <span class='op'><a href='https://rdrr.io/r/base/Arithmetic.html'>%/%</a></span> <span class='fl'>5</span>, <span class='va'>sentiment</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>sentiment</span>, values_from <span class='op'>=</span> <span class='va'>n</span>, values_fill <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>sentiment <span class='op'>=</span> <span class='va'>positive</span> <span class='op'>-</span> <span class='va'>negative</span><span class='op'>)</span>
+  
+<span class='va'>soar_bing_sentiment</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 85 x 5
+# Groups:   Department [5]
+   Department    index positive negative sentiment
+   &lt;chr&gt;         &lt;dbl&gt;    &lt;int&gt;    &lt;int&gt;     &lt;int&gt;
+ 1 ELPHD             0        2        0         2
+ 2 ELPHD             1        1        0         1
+ 3 ELPHD             2        1        0         1
+ 4 ELPHD             3        1        0         1
+ 5 ELPHD             4        1        0         1
+ 6 Graduate STEM     1        1        0         1
+ 7 Graduate STEM     2        2        0         2
+ 8 Graduate TELS     0        1        0         1
+ 9 Graduate TELS     2        1        0         1
+10 Graduate TELS     3        1        0         1
+# ... with 75 more rows</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>soar_bing_sentiment</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>index</span>, <span class='va'>sentiment</span>, fill <span class='op'>=</span> <span class='va'>Department</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>Department</span>, ncol <span class='op'>=</span> <span class='fl'>2</span>, scales <span class='op'>=</span> <span class='st'>"free_x"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="soar-project_files/figure-html5/unnamed-chunk-35-1.png" width="624" /></p>
+</div>
+<h3 id="topic-modeling">Topic Modeling</h3>
+<p>Let’s explore the data by doing a parameterized model like Latent
+Diricj=hlet Allocation (LDA) will pull out any terms from the Goals that
+METRC can focus on to help support the students of the College of
+Education.</p>
+<p>Topic Models can help to determine the proportionate composition of a
+fixed number of topics within a collection of data. Our data here is ver
+small in comparison to say doing exploring topics within a Literature
+Review.</p>
+<h3 id="document-matrix">Document Matrix</h3>
+<p>First we need to create a document term matrix with soardata2_df. We
+will remove stop words since they are uninformative.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soar_dtm</span> <span class='op'>&lt;-</span> <span class='va'>soardata2_df</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>number</span>, <span class='va'>word</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='va'>cast_dtm</span> <span class='op'>&lt;-</span> <span class='va'>soar_dtm</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/document_term_casters.html'>cast_dtm</a></span><span class='op'>(</span><span class='va'>number</span>, <span class='va'>word</span>, <span class='va'>n</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Lets look at the number of terms in the matrix</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>cast_dtm</span><span class='op'>)</span> <span class='co'># look at # of terms in matrix</span>
+</code></pre>
+</div>
+<pre><code>[1] 457 381</code></pre>
+</div>
+<p>Next we convert to lowercase, remove special characters and stem our
+corpus.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#text processing</span>
+<span class='va'>temp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/stm/man/textProcessor.html'>textProcessor</a></span><span class='op'>(</span><span class='va'>soar_data2</span><span class='op'>$</span><span class='va'>Goal</span>, <span class='co'># use file and variable that has text</span>
+                      metadata <span class='op'>=</span> <span class='va'>soar_data2</span>,
+                      lowercase<span class='op'>=</span><span class='cn'>TRUE</span>, <span class='co'># change to lowercase</span>
+                      removestopwords<span class='op'>=</span><span class='cn'>TRUE</span>, <span class='co'># remove stop words</span>
+                      removenumbers<span class='op'>=</span><span class='cn'>TRUE</span>, <span class='co'># remove numbers</span>
+                      removepunctuation<span class='op'>=</span><span class='cn'>TRUE</span>, <span class='co'># remove special punctuation</span>
+                      wordLengths<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='cn'>Inf</span><span class='op'>)</span>, <span class='co'>#Change word lengths to 3</span>
+                      stem<span class='op'>=</span><span class='cn'>FALSE</span>, <span class='co'># stem the corpus</span>
+                      onlycharacter<span class='op'>=</span> <span class='cn'>FALSE</span>,
+                      striphtml<span class='op'>=</span><span class='cn'>TRUE</span>,
+                      customstopwords<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='co'># do not choose custom stop words</span>
+</code></pre>
+</div>
+<pre><code>Building corpus... 
+Converting to Lower Case... 
+Removing punctuation... 
+Removing stopwords... 
+Remove Custom Stopwords...
+Removing numbers... 
+Creating Output... </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>temp</span>
+</code></pre>
+</div>
+<pre><code>A text corpus with 199 documents, and an 449 word dictionary.</code></pre>
+</div>
+<p>Stem did not work so we must do a different code to ‘Stem’ the
+corpus.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#stemming the text</span>
+<span class='va'>stemmed_soar_data</span> <span class='op'>&lt;-</span> <span class='va'>soar_data2</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>output <span class='op'>=</span> <span class='va'>word</span>, input <span class='op'>=</span> <span class='va'>Goal</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter-joins.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stop_words</span>, by <span class='op'>=</span> <span class='st'>"word"</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>stem <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/SnowballC/man/wordStem.html'>wordStem</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># create a new variable named stem for the stopwords.</span>
+
+
+<span class='va'>stemmed_soar_data</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 838 x 3
+# Groups:   Department [7]
+   Department             word          stem      
+   &lt;chr&gt;                  &lt;chr&gt;         &lt;chr&gt;     
+ 1 Distance Graduate TELS deeper        deeper    
+ 2 Distance Graduate TELS understanding understand
+ 3 Distance Graduate TELS quantitative  quantit   
+ 4 Distance Graduate TELS qualitative   qualit    
+ 5 Distance Graduate TELS research      research  
+ 6 Distance Graduate TELS methods       method    
+ 7 Distance Graduate TELS choose        choos     
+ 8 Distance Graduate TELS dissertation  dissert   
+ 9 Distance Graduate TELS topic         topic     
+10 Distance Graduate TELS makes         make      
+# ... with 828 more rows</code></pre>
+</div>
+<p>Take the Stem words document and add to cast_dtm to create one
+corpus.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>stemmed_soar_data</span> <span class='op'>&lt;-</span> <span class='va'>soar_data2</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>output <span class='op'>=</span> <span class='va'>word</span>, input <span class='op'>=</span> <span class='va'>Goal</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter-joins.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stop_words</span>, by <span class='op'>=</span> <span class='st'>"word"</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>stem <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/SnowballC/man/wordStem.html'>wordStem</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>stem</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/document_term_casters.html'>cast_dtm</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>stem</span>, <span class='va'>n</span><span class='op'>)</span>
+
+<span class='va'>stemmed_soar_data</span>
+</code></pre>
+</div>
+<pre><code>&lt;&lt;DocumentTermMatrix (documents: 381, terms: 330)&gt;&gt;
+Non-/sparse entries: 381/125349
+Sparsity           : 100%
+Maximal term length: 12
+Weighting          : term frequency (tf)</code></pre>
+</div>
+<p>#Latent Dirichlet allocation</p>
+<p>Using the topicmodels package we will run our LDA. Setting K to
+10.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#running lda to find 8 topics</span>
+<span class='va'>lda_soar_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/topicmodels/man/lda.html'>LDA</a></span><span class='op'>(</span><span class='va'>cast_dtm</span>, k <span class='op'>=</span> <span class='fl'>10</span>, control <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>seed <span class='op'>=</span> <span class='fl'>0713</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>lda_soar_data</span>
+</code></pre>
+</div>
+<pre><code>A LDA_VEM topic model with 10 topics.</code></pre>
+</div>
+Looking at the Beta occurance for each term
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soar_topics</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>lda_soar_data</span>, matrix <span class='op'>=</span> <span class='st'>"beta"</span><span class='op'>)</span>
+<span class='va'>soar_topics</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 3,810 x 3
+   topic term       beta
+   &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;
+ 1     1 dr    3.93e-216
+ 2     2 dr    1.74e-216
+ 3     3 dr    1.11e-  2
+ 4     4 dr    2.96e-217
+ 5     5 dr    9.99e-218
+ 6     6 dr    3.21e-218
+ 7     7 dr    6.03e- 45
+ 8     8 dr    6.83e- 85
+ 9     9 dr    2.77e-217
+10    10 dr    2.01e-225
+# ... with 3,800 more rows</code></pre>
+</div>
+<p>Let’s see how many times the term might occur in each topic. We use
+augment() it uses a model to add information to each observation in the
+original data.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soar_assignments</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/augment.html'>augment</a></span><span class='op'>(</span><span class='va'>lda_soar_data</span>, data <span class='op'>=</span> <span class='va'>cast_dtm</span><span class='op'>)</span>
+<span class='va'>soar_assignments</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 838 x 4
+   document term          count .topic
+   &lt;chr&gt;    &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;
+ 1 1        dr                1      3
+ 2 2        mercedes          1      4
+ 3 3        kamoru            1      8
+ 4 4        2023              1      8
+ 5 1        deeper            1      3
+ 6 2        understanding     1      4
+ 7 3        quantitative      1      8
+ 8 4        qualitative       1      8
+ 9 5        research          1      4
+10 28       research          1      3
+# ... with 828 more rows</code></pre>
+</div>
+<p>Look for the most common differences within each of the model
+topics.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>beta_wide</span> <span class='op'>&lt;-</span> <span class='va'>soar_topics</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>topic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"topic"</span>, <span class='va'>topic</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>topic</span>, values_from <span class='op'>=</span> <span class='va'>beta</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>topic1</span> <span class='op'>&gt;</span> <span class='fl'>.001</span> <span class='op'>|</span> <span class='va'>topic2</span> <span class='op'>&gt;</span> <span class='fl'>.001</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>log_ratio <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log2</a></span><span class='op'>(</span><span class='va'>topic2</span> <span class='op'>/</span> <span class='va'>topic1</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>beta_wide</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 78 x 12
+   term       topic1    topic2    topic3    topic4    topic5    topic6
+   &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+ 1 disser~ 2.16e-180 1.22e-  2 6.22e- 83 3.75e-  2 1.00e- 72 1.25e-181
+ 2 fills   1.84e-225 1.22e-  2 8.17e-236 4.31e-227 5.92e-229 2.31e-226
+ 3 learnh~ 2.72e-242 1.22e-  2 1.80e-251 7.58e-146 3.40e-243 5.29e-246
+ 4 calling 1.23e-  2 1.38e-220 2.77e-213 6.49e-219 2.26e-222 7.83e-220
+ 5 succes~ 2.29e-163 3.66e-  2 6.43e-172 2.46e-161 6.45e- 29 5.38e-162
+ 6 mental~ 2.14e-188 3.66e-  2 3.95e- 80 3.05e-150 4.84e-190 1.31e-189
+ 7 excell~ 2.39e-242 1.22e-  2 1.16e-251 4.81e-145 2.56e-244 2.99e-245
+ 8 edtpa   1.23e-  2 2.86e-221 6.75e-214 3.09e-219 1.07e-222 1.26e-220
+ 9 finding 1.49e-176 2.44e-  2 2.54e-185 1.15e- 50 6.56e-179 2.06e-176
+10 balance 2.94e-157 3.66e-  2 3.46e-167 6.24e- 56 2.04e- 58 7.27e-157
+# ... with 68 more rows, and 5 more variables: topic7 &lt;dbl&gt;,
+#   topic8 &lt;dbl&gt;, topic9 &lt;dbl&gt;, topic10 &lt;dbl&gt;, log_ratio &lt;dbl&gt;</code></pre>
+</div>
+We can run the posterior distribution on teh LDA Results. This will show
+the compromise between the prior distribution and the likelihood
+function.
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ldaResult</span> <span class='op'>&lt;-</span> <span class='fu'>posterior</span><span class='op'>(</span><span class='va'>lda_soar_data</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>ldaResult</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$names
+[1] &quot;terms&quot;  &quot;topics&quot;</code></pre>
+</div>
+next we look at the length of the vocabulary.
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>cast_dtm</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 381</code></pre>
+</div>
+We find the k distributions over ncol(cast dtm) terms. We had 10 for K
+and 381 for our DTM.
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>beta</span> <span class='op'>&lt;-</span> <span class='va'>ldaResult</span><span class='op'>$</span><span class='va'>terms</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>beta</span><span class='op'>)</span> <span class='co'># k distributions over ncol(sdtm) terms</span>
+</code></pre>
+</div>
+<pre><code>[1]  10 381</code></pre>
+</div>
+We look at the matrix on beta sum to 1
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>beta</span><span class='op'>)</span> <span class='co'># rows in beta sum to 1</span>
+</code></pre>
+</div>
+<pre><code> 1  2  3  4  5  6  7  8  9 10 
+ 1  1  1  1  1  1  1  1  1  1 </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>cast_dtm</span><span class='op'>)</span> <span class='co'>#size of collection</span>
+</code></pre>
+</div>
+<pre><code>[1] 457</code></pre>
+</div>
+Next we look at the same within theta.
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>theta</span> <span class='op'>&lt;-</span> <span class='va'>ldaResult</span><span class='op'>$</span><span class='va'>topics</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>theta</span><span class='op'>)</span> <span class='co'>#ndocs (soardtm) distribution over K topics</span>
+</code></pre>
+</div>
+<pre><code>[1] 457  10</code></pre>
+</div>
+<p>Let’s take a look at the 10 most common terms withing the term
+probability of inferred topics.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/terms.html'>terms</a></span><span class='op'>(</span><span class='va'>lda_soar_data</span>, <span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>      Topic 1       Topic 2        Topic 3      Topic 4        
+ [1,] &quot;field&quot;       &quot;classes&quot;      &quot;future&quot;     &quot;teacher&quot;      
+ [2,] &quot;educator&quot;    &quot;growth&quot;       &quot;grow&quot;       &quot;semester&quot;     
+ [3,] &quot;knowledge&quot;   &quot;people&quot;       &quot;learning&quot;   &quot;positive&quot;     
+ [4,] &quot;build&quot;       &quot;teach&quot;        &quot;lesson&quot;     &quot;internship&quot;   
+ [5,] &quot;care&quot;        &quot;experience&quot;   &quot;responsive&quot; &quot;dissertation&quot; 
+ [6,] &quot;mental&quot;      &quot;successfully&quot; &quot;feel&quot;       &quot;happy&quot;        
+ [7,] &quot;experiences&quot; &quot;mentally&quot;     &quot;start&quot;      &quot;instructional&quot;
+ [8,] &quot;plans&quot;       &quot;balance&quot;      &quot;community&quot;  &quot;calculus&quot;     
+ [9,] &quot;gain&quot;        &quot;week&quot;         &quot;support&quot;    &quot;engineering&quot;  
+[10,] &quot;family&quot;      &quot;health&quot;       &quot;career&quot;     &quot;research&quot;     
+      Topic 5      Topic 6         Topic 7     Topic 8    
+ [1,] &quot;graduate&quot;   &quot;placement&quot;     &quot;goal&quot;      &quot;learn&quot;    
+ [2,] &quot;stay&quot;       &quot;connections&quot;   &quot;classroom&quot; &quot;confident&quot;
+ [3,] &quot;create&quot;     &quot;relationships&quot; &quot;pass&quot;      &quot;teachers&quot; 
+ [4,] &quot;management&quot; &quot;program&quot;       &quot;strong&quot;    &quot;complete&quot; 
+ [5,] &quot;motivated&quot;  &quot;job&quot;           &quot;impact&quot;    &quot;skills&quot;   
+ [6,] &quot;successful&quot; &quot;improve&quot;       &quot;4.0&quot;       &quot;degree&quot;   
+ [7,] &quot;schools&quot;    &quot;design&quot;        &quot;comfort&quot;   &quot;topics&quot;   
+ [8,] &quot;class&quot;      &quot;resources&quot;     &quot;process&quot;   &quot;education&quot;
+ [9,] &quot;foster&quot;     &quot;ced&quot;           &quot;passing&quot;   &quot;ncsu&quot;     
+[10,] &quot;fun&quot;        &quot;environment&quot;   &quot;succeed&quot;   &quot;friends&quot;  
+      Topic 9       Topic 10    
+ [1,] &quot;students&quot;    &quot;teaching&quot;  
+ [2,] &quot;school&quot;      &quot;time&quot;      
+ [3,] &quot;culturally&quot;  &quot;finish&quot;    
+ [4,] &quot;top&quot;         &quot;grades&quot;    
+ [5,] &quot;comfortable&quot; &quot;mindset&quot;   
+ [6,] &quot;safe&quot;        &quot;peers&quot;     
+ [7,] &quot;influence&quot;   &quot;strategies&quot;
+ [8,] &quot;hope&quot;        &quot;physically&quot;
+ [9,] &quot;2021&quot;        &quot;confidence&quot;
+[10,] &quot;synthesize&quot;  &quot;creating&quot;  </code></pre>
+</div>
+<h3 id="topic-ranking">Topic Ranking</h3>
+<p>We can try to get more meaningful order by looking at to terms in
+each topic.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>topicNames</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/terms.html'>terms</a></span><span class='op'>(</span><span class='va'>lda_soar_data</span>, <span class='fl'>5</span><span class='op'>)</span>, <span class='fl'>2</span>, <span class='va'>paste</span>, collapse <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span> <span class='co'># reset topic names</span>
+<span class='va'>topicNames</span>
+</code></pre>
+</div>
+<pre><code>                                        Topic 1 
+              &quot;fieldeducatorknowledgebuildcare&quot; 
+                                        Topic 2 
+           &quot;classesgrowthpeopleteachexperience&quot; 
+                                        Topic 3 
+           &quot;futuregrowlearninglessonresponsive&quot; 
+                                        Topic 4 
+&quot;teachersemesterpositiveinternshipdissertation&quot; 
+                                        Topic 5 
+        &quot;graduatestaycreatemanagementmotivated&quot; 
+                                        Topic 6 
+  &quot;placementconnectionsrelationshipsprogramjob&quot; 
+                                        Topic 7 
+                &quot;goalclassroompassstrongimpact&quot; 
+                                        Topic 8 
+         &quot;learnconfidentteacherscompleteskills&quot; 
+                                        Topic 9 
+       &quot;studentsschoolculturallytopcomfortable&quot; 
+                                       Topic 10 
+              &quot;teachingtimefinishgradesmindset&quot; </code></pre>
+</div>
+<p>Let’s get a rank for the top terms per topic. This didn;t produce
+more then we already had above.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>topicNames</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='fu'>lda</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lda/man/top.topic.words.html'>top.topic.words</a></span><span class='op'>(</span><span class='va'>beta</span>, <span class='fl'>5</span>, by.score <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>, <span class='fl'>2</span>, <span class='va'>paste</span>, collapse <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+
+<span class='va'>topicNames</span>
+</code></pre>
+</div>
+<pre><code>                                            1 
+            &quot;fieldeducatorknowledgebuildcare&quot; 
+                                            2 
+         &quot;classesgrowthteachpeopleexperience&quot; 
+                                            3 
+         &quot;futuregrowlearninglessonresponsive&quot; 
+                                            4 
+     &quot;teachersemesterpositiveinternshiphappy&quot; 
+                                            5 
+      &quot;graduatestaycreatemanagementmotivated&quot; 
+                                            6 
+&quot;placementconnectionsrelationshipsprogramjob&quot; 
+                                            7 
+              &quot;goalclassroompassstrongimpact&quot; 
+                                            8 
+       &quot;learnconfidentteacherscompleteskills&quot; 
+                                            9 
+     &quot;studentsschoolculturallytopcomfortable&quot; 
+                                           10 
+            &quot;teachingtimefinishgradesmindset&quot; </code></pre>
+</div>
+<p>I am wondering if e can look at the probable topics and find their
+occurance. Sort topics according to the probability in the goals
+data</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>topicProportions</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colSums</a></span><span class='op'>(</span><span class='va'>theta</span><span class='op'>)</span><span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>cast_dtm</span><span class='op'>)</span>
+
+<span class='va'>topicProportions</span>
+</code></pre>
+</div>
+<pre><code>         1          2          3          4          5          6 
+0.10568281 0.09661194 0.09708784 0.09642858 0.10052924 0.10723441 
+         7          8          9         10 
+0.09697681 0.09272263 0.10476696 0.10195879 </code></pre>
+</div>
+<p>We can see that some topics are occuring more often then others in
+the corpus.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>topicProportions</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>topicNames</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='va'>topicProportions</span>, decreasing <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>placementconnectionsrelationshipsprogramjob 
+                                 0.10723441 
+            fieldeducatorknowledgebuildcare 
+                                 0.10568281 
+     studentsschoolculturallytopcomfortable 
+                                 0.10476696 
+            teachingtimefinishgradesmindset 
+                                 0.10195879 
+      graduatestaycreatemanagementmotivated 
+                                 0.10052924 
+         futuregrowlearninglessonresponsive 
+                                 0.09708784 
+              goalclassroompassstrongimpact 
+                                 0.09697681 
+         classesgrowthteachpeopleexperience 
+                                 0.09661194 
+     teachersemesterpositiveinternshiphappy 
+                                 0.09642858 
+       learnconfidentteacherscompleteskills 
+                                 0.09272263 </code></pre>
+</div>
+<p>Let’s slice out the top 5 topics</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>soar_top_terms</span> <span class='op'>&lt;-</span> <span class='va'>soar_topics</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>topic</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_max</a></span><span class='op'>(</span><span class='va'>beta</span>, n <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>topic</span>, <span class='op'>-</span><span class='va'>beta</span><span class='op'>)</span>
+
+<span class='va'>soar_top_terms</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>term <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/reorder_within.html'>reorder_within</a></span><span class='op'>(</span><span class='va'>term</span>, <span class='va'>beta</span>, <span class='va'>topic</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://forcats.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>beta</span>, <span class='va'>term</span>, fill <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>topic</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>topic</span>, scales <span class='op'>=</span> <span class='st'>"free"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/reorder_within.html'>scale_y_reordered</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="soar-project_files/figure-html5/unnamed-chunk-56-1.png" width="624" /></p>
+</div>
+<h1 id="communication">Communication</h1>
+<p>I was hoping that we would have been able to tell from the LDA model
+Analysis what department the terms were from and if there are any themes
+in which METRC would be able to support the students better. A LDA model
+did not conclude anything more then a text Mining Analysis with
+Sentiment.</p>
+<p>The Bigrams was by far the most successfull when looking at themes
+that may be of interst to METRC with supportive workshops and or PGU’s
+in the future.</p>
+<div class="sourceCode" id="cb45"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
