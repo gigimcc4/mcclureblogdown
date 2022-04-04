@@ -1,0 +1,2490 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Social Network Analysis of Tweet Bigrams from Sentiment of four popular Learning Management Systems</title>
+
+  <meta property="description" itemprop="description" content="Early work using ggraph and igraph"/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2022-02-10"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-02-10"/>
+  <meta name="article:author" content="Jeanne McClure"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Social Network Analysis of Tweet Bigrams from Sentiment of four popular Learning Management Systems"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Early work using ggraph and igraph"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Social Network Analysis of Tweet Bigrams from Sentiment of four popular Learning Management Systems"/>
+  <meta property="twitter:description" content="Early work using ggraph and igraph"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","preview","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Social Network Analysis of Tweet Bigrams from Sentiment of four popular Learning Management Systems"]},{"type":"character","attributes":{},"value":["Early work using ggraph and igraph\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Jeanne McClure"]}]}]},{"type":"character","attributes":{},"value":["centrality.png"]},{"type":"character","attributes":{},"value":["2022-02-10"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["bigrams-of-lms_files/anchor-4.2.2/anchor.min.js","bigrams-of-lms_files/bowser-1.9.3/bowser.min.js","bigrams-of-lms_files/distill-2.2.21/template.v2.js","bigrams-of-lms_files/figure-html5/unnamed-chunk-10-1.png","bigrams-of-lms_files/figure-html5/unnamed-chunk-13-1.png","bigrams-of-lms_files/figure-html5/unnamed-chunk-19-1.png","bigrams-of-lms_files/figure-html5/unnamed-chunk-23-1.png","bigrams-of-lms_files/figure-html5/unnamed-chunk-26-1.png","bigrams-of-lms_files/figure-html5/unnamed-chunk-28-1.png","bigrams-of-lms_files/figure-html5/unnamed-chunk-29-1.png","bigrams-of-lms_files/figure-html5/unnamed-chunk-4-1.png","bigrams-of-lms_files/header-attrs-2.13/header-attrs.js","bigrams-of-lms_files/jquery-3.6.0/jquery-3.6.0.js","bigrams-of-lms_files/jquery-3.6.0/jquery-3.6.0.min.js","bigrams-of-lms_files/jquery-3.6.0/jquery-3.6.0.min.map","bigrams-of-lms_files/popper-2.6.0/popper.min.js","bigrams-of-lms_files/tippy-6.2.7/tippy-bundle.umd.min.js","bigrams-of-lms_files/tippy-6.2.7/tippy-light-border.css","bigrams-of-lms_files/tippy-6.2.7/tippy.css","bigrams-of-lms_files/tippy-6.2.7/tippy.umd.min.js","bigrams-of-lms_files/webcomponents-2.0.0/webcomponents.js","centrality.png","data/edges.csv","data/nodes.csv","data/tweets.xlsx"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="bigrams-of-lms_files/header-attrs-2.13/header-attrs.js"></script>
+  <script src="bigrams-of-lms_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="bigrams-of-lms_files/popper-2.6.0/popper.min.js"></script>
+  <link href="bigrams-of-lms_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="bigrams-of-lms_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="bigrams-of-lms_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="bigrams-of-lms_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="bigrams-of-lms_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="bigrams-of-lms_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="bigrams-of-lms_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Social Network Analysis of Tweet Bigrams from Sentiment of four popular Learning Management Systems","description":"Early work using ggraph and igraph","authors":[{"author":"Jeanne McClure","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-02-10T00:00:00.000-05:00","citationText":"McClure, 2022"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Social Network Analysis of Tweet Bigrams from Sentiment of four popular Learning Management Systems</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>Early work using ggraph and igraph</p></p>
+</div>
+
+<div class="d-byline">
+  Jeanne McClure  
+  
+<br/>2022-02-10
+</div>
+
+<div class="d-article">
+<h2 id="purpose">1. PURPOSE</h2>
+<h3 id="a.-motivation-and-focus">1a. Motivation and Focus</h3>
+<p>We completed a <em>sentiment analysis</em> on four popular
+*<strong>Learning Management Systems (LMS)</strong>; Google Classroom,
+Canvas, Moodle, and Blackboard, in a previous case study. We evaluated
+emotions and sentiment towards each LMS by assessing the most common
+uniwords. We evaluated strengths and weaknesses by pulling public
+opinion from the Twitter Resting API.</p>
+<p>We will evaluate connections between the most frequent combination of
+words (Bigrams) through Social Network Analysis. Here we’ll explore this
+option for the tweets made in English for the 4 LMS previously
+observed.</p>
+<p><strong>Guiding Questions:</strong></p>
+<ol type="1">
+<li>Are there networks from the co-occurrence of Bigrams?</li>
+<li>What does the mathematical analysis of the Bigram network tell
+us?</li>
+</ol>
+<h3 id="b.-load-libraries">1b. Load Libraries</h3>
+<p>Let’s first load our libraries to read in packages that we will use
+to answer our questions. We will also create a function called
+replace_reg() by looking for and deleting strings (nonsense words),
+numbers, and other manual stop characters and numbers.</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://statnet.org/'>network</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://statnet.org'>sna</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://datastorm-open.github.io/visNetwork/'>visNetwork</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://bwlewis.github.io/rthreejs'>threejs</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/statnet/ndtv'>ndtv</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>qgraph</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://github.com/mrdwab/splitstackshape'>splitstackshape</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyr.tidyverse.org'>tidyr</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://stringr.tidyverse.org'>stringr</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readxl.tidyverse.org'>readxl</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readr.tidyverse.org'>readr</a></span><span class='op'>)</span>
+
+<span class='co'># For visualizations</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/nbarrowman/vtree'>vtree</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://igraph.org'>igraph</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggraph.data-imaginist.com'>ggraph</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidygraph.data-imaginist.com'>tidygraph</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://CRAN.R-project.org/package=networkD3'>networkD3</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+
+<span class='co'># regex for parsing tweets</span>
+<span class='va'>replace_reg</span> <span class='op'>&lt;-</span> <span class='st'>"https?://[^\\s]+|&amp;amp;|&amp;lt;|&amp;gt;|&amp;d2l;|&amp;aristotlemrs;|&amp;aleks;|\bRT\\b"</span>
+
+<span class='co'># Custom Color Palette</span>
+<span class='va'>my_colors</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#05A4C0"</span>, <span class='st'>"#85CEDA"</span>, <span class='st'>"#D2A7D8"</span>, <span class='st'>"#A67BC5"</span>, <span class='st'>"#BB1C8B"</span>, <span class='st'>"#8D266E"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<h2 id="method">2. METHOD</h2>
+<p>Our initial read-in data frame includes <strong>4521 tweets </strong>
+objects in the text to evaluate. After tokenizing the Bigrams and
+restructuring the data objects, we will include Bigrams mentioned more
+than five times. Once tidyed, the data consists of <strong>1407
+bigrams</strong> left to evaluate with a social network approach.</p>
+<h3 id="a.-read-and-restructure-data">2a. Read and Restructure Data</h3>
+<ul>
+<li>Read in the previously evaluated LMS data for Google Classroom
+tweets, Blackboard tweets, Canvas tweets, and Moodle tweets.</li>
+<li>Subset columns to pull only index, lms and text columns.</li>
+<li>Visualize the initial number of tweets for each LMS.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tweets</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='st'>"data/tweets.xlsx"</span><span class='op'>)</span>
+
+<span class='co'>#select lms, text and index, grouping by lms</span>
+<span class='va'>tweets_data2</span> <span class='op'>&lt;-</span> <span class='va'>tweets</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'index'</span>, <span class='st'>'lms'</span>, <span class='st'>'text'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>lms</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a></span><span class='op'>(</span><span class='op'>)</span>
+
+
+<span class='fu'><a href='https://rdrr.io/pkg/vtree/man/vtree.html'>vtree</a></span><span class='op'>(</span><span class='va'>tweets_data2</span>, <span class='st'>"lms"</span>, horiz<span class='op'>=</span><span class='cn'>FALSE</span>, palette <span class='op'>=</span> <span class='fl'>4</span>, sortfill <span class='op'>=</span> <span class='cn'>TRUE</span>, title<span class='op'>=</span><span class='st'>"Initial LMS Tweets Data"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<p><img src="C:/Users/Jeanne/AppData/Local/Temp/Rtmpmc2ZIl/vtree001.png" width="1000" /></p>
+</div>
+<h3 id="b.-tidytext-and-initiate-bigram">2b. Tidytext and Initiate
+Bigram</h3>
+<ul>
+<li>Using the <em>tidytext and dplyr packages</em> we split the text
+into tokens creating a table with two-tokens-per-row. The token is under
+a column called “bigram.”</li>
+<li>Subset the bigram columns by separating and adding two columns
+“first” and “second.””</li>
+<li>Remove stop words and manual stop words using our str_detect()
+dictionary and remove words that are not letter strings.</li>
+<li>Group our lms_bigram() to count up the bigrams, summarize keeping
+only those that appear more than 5 times.</li>
+<li>Visualizing the new numbers for each LMS.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># split into word pairs</span>
+<span class='va'>lms_bigrams</span> <span class='op'>&lt;-</span> <span class='va'>tweets_data2</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_replace.html'>str_replace_all</a></span><span class='op'>(</span><span class='va'>text</span>, <span class='va'>replace_reg</span>, <span class='st'>""</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>bigram</span>, <span class='va'>text</span>, token <span class='op'>=</span> <span class='st'>"ngrams"</span>, n <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+
+<span class='co'># remove stop words</span>
+<span class='va'>lms_bigrams</span> <span class='op'>&lt;-</span> <span class='va'>lms_bigrams</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/separate.html'>separate</a></span><span class='op'>(</span><span class='va'>bigram</span>, into <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"first"</span>,<span class='st'>"second"</span><span class='op'>)</span>, sep <span class='op'>=</span> <span class='st'>" "</span>, remove <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter-joins.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stop_words</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"first"</span> <span class='op'>=</span> <span class='st'>"word"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter-joins.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stop_words</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"second"</span> <span class='op'>=</span> <span class='st'>"word"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>first</span>, <span class='st'>"[a-z]"</span><span class='op'>)</span> <span class='op'>&amp;</span>
+         <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>second</span>, <span class='st'>"[a-z]"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='co'>#count up new birgams and create a new column called n only keep more than 5 counts</span>
+<span class='va'>lms_bigrams_count</span> <span class='op'>&lt;-</span> <span class='va'>lms_bigrams</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>lms</span>, <span class='va'>bigram</span>, <span class='va'>first</span>, <span class='va'>second</span><span class='op'>)</span><span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>n<span class='op'>=</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>n</span> <span class='op'>&gt;=</span> <span class='fl'>5</span><span class='op'>)</span><span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>n</span><span class='op'>)</span><span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='co'>#visualize new number of rows (previously counting tweets)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/vtree/man/vtree.html'>vtree</a></span><span class='op'>(</span><span class='va'>lms_bigrams_count</span>, <span class='st'>"lms"</span>, horiz<span class='op'>=</span><span class='cn'>FALSE</span>, palette <span class='op'>=</span> <span class='fl'>4</span>, sortfill <span class='op'>=</span> <span class='cn'>TRUE</span>, title<span class='op'>=</span><span class='st'>"Bigram LMS Tweets Data"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<p><img src="C:/Users/Jeanne/AppData/Local/Temp/Rtmpmc2ZIl/vtree002.png" width="1000" /></p>
+</div>
+<h2 id="explore">3. EXPLORE</h2>
+<h3 id="a.-subset-coloumns-and-visualize-bigrams">3a. Subset Coloumns
+and visualize Bigrams</h3>
+<ul>
+<li>Select first, second and n columns create lms_bigram_tble data frame
+to use later in the Social Network Analysis.</li>
+<li>Visually inspect Bigrams mentioned more than 35 times through an
+igraph to observe any communities in the network.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Rename and reorder columns (so we can make the graphs more easily)</span>
+<span class='va'>lms_bigram_tbl</span> <span class='op'>&lt;-</span> <span class='va'>lms_bigrams_count</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'first'</span>,<span class='st'>'second'</span>, <span class='st'>'n'</span><span class='op'>)</span><span class='op'>)</span>
+
+
+<span class='va'>bigram_graph</span> <span class='op'>&lt;-</span> <span class='va'>lms_bigram_tbl</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>n</span> <span class='op'>&gt;</span> <span class='fl'>35</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html'>graph_from_data_frame</a></span><span class='op'>(</span><span class='op'>)</span>
+
+
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+
+<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'>grid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/grid/arrow.html'>arrow</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"closed"</span>, length <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grid/unit.html'>unit</a></span><span class='op'>(</span><span class='fl'>.15</span>, <span class='st'>"inches"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://ggraph.data-imaginist.com/reference/ggraph.html'>ggraph</a></span><span class='op'>(</span><span class='va'>bigram_graph</span>, layout <span class='op'>=</span> <span class='st'>"fr"</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_edge_link.html'>geom_edge_link</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>edge_alpha <span class='op'>=</span> <span class='va'>n</span><span class='op'>)</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span>, arrow <span class='op'>=</span> <span class='va'>a</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_node_point.html'>geom_node_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"lightblue"</span>, size <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_node_text.html'>geom_node_text</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>name</span><span class='op'>)</span>, vjust <span class='op'>=</span> <span class='fl'>1</span>, hjust <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<p><img src="bigrams-of-lms_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<h2 id="model">4. MODEL</h2>
+<p>To evaluate Social Network for Bigrams we will create a igraph and
+table graph class network. This will easily allow for visualizing the
+connections and explaining the network mathmatically.</p>
+<h3 id="a.-edges-and-nodes">4a. Edges and Nodes</h3>
+<p>Nodes are the unique words - each word has an identification ID edges
+are the bigrams, meaning that they show how frequently we find a
+combination of 2 words (represented by their unique ID).</p>
+<ul>
+<li>Create a source for the first word of the bigram</li>
+<li>Create a destination for the second word of the bigram</li>
+<li>Create Nodes</li>
+<li>Create Edges</li>
+<li>Select only to, from and weight</li>
+<li>Inspect i. head of Node and ii. head of Edges and save for later
+use.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#filter to Bigrams that are mentioned more than 35 times.</span>
+<span class='va'>lms_df</span> <span class='op'>&lt;-</span> <span class='va'>lms_bigram_tbl</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>n</span> <span class='op'>&gt;</span> <span class='fl'>35</span><span class='op'>)</span> 
+<span class='co'># Distinct first (part of bigram)</span>
+<span class='va'>sources</span> <span class='op'>&lt;-</span> <span class='va'>lms_df</span><span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> 
+                <span class='fu'><a href='https://dplyr.tidyverse.org/reference/distinct.html'>distinct</a></span><span class='op'>(</span><span class='va'>first</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> 
+                <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>first</span><span class='op'>)</span>
+
+<span class='co'># Distinct second (part of bigram)</span>
+<span class='va'>destinations</span> <span class='op'>&lt;-</span> <span class='va'>lms_df</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> 
+                    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/distinct.html'>distinct</a></span><span class='op'>(</span><span class='va'>second</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> 
+                    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>second</span><span class='op'>)</span>
+
+<span class='co'>#NODES AND EDGES BELOW:</span>
+
+<span class='co'># ----- NODES -----</span>
+<span class='co'># Unique Items + create unique ID</span>
+<span class='va'>nodes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>full_join</a></span><span class='op'>(</span><span class='va'>sources</span>, <span class='va'>destinations</span>, by<span class='op'>=</span><span class='st'>"label"</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>rowid_to_column</a></span><span class='op'>(</span><span class='st'>"id"</span><span class='op'>)</span>
+
+<span class='co'># ----- EDGES -----</span>
+<span class='co'># Adds unique ID of Item 1 to data</span>
+<span class='va'>edges</span> <span class='op'>&lt;-</span> <span class='va'>lms_df</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> 
+            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>nodes</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"first"</span> <span class='op'>=</span> <span class='st'>"label"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> 
+            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>from <span class='op'>=</span> <span class='va'>id</span><span class='op'>)</span>
+
+<span class='co'># Adds unique ID of Item 2 to data</span>
+<span class='va'>edges</span> <span class='op'>&lt;-</span> <span class='va'>edges</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> 
+            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>nodes</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"second"</span> <span class='op'>=</span> <span class='st'>"label"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> 
+            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>to <span class='op'>=</span> <span class='va'>id</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> 
+            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>weight <span class='op'>=</span> <span class='va'>n</span><span class='op'>)</span>
+
+<span class='co'># Select only From | To | Weight (frequency)</span>
+<span class='va'>edges</span> <span class='op'>&lt;-</span> <span class='va'>edges</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>from</span>, <span class='va'>to</span>, <span class='va'>weight</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol type="i">
+<li>Inspect head of node
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># inspect head of nodes and edges</span>
+<span class='va'>nodes</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fl'>5</span><span class='op'>)</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<pre><code># A tibble: 5 x 2
+     id label  
+  &lt;int&gt; &lt;chr&gt;  
+1     1 google 
+2     2 canvas 
+3     3 essay  
+4     4 pearson
+5     5 aleks  </code></pre>
+</div>
+<ol start="2" type="i">
+<li>Inspect head of edges
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>edges</span> <span class='op'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork-exports.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fl'>5</span><span class='op'>)</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<pre><code># A tibble: 5 x 3
+   from    to weight
+  &lt;int&gt; &lt;int&gt;  &lt;int&gt;
+1     1    83   1688
+2     2     4    309
+3     3     9    232
+4     3    10    187
+5     4     7    182</code></pre>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Export the nodes &amp; edges data as we may want to use it in the future.</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>nodes</span>,<span class='st'>"data/nodes.csv"</span>, row.names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>edges</span>,<span class='st'>"data/edges.csv"</span>, row.names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<h3 id="b.-igraph">4b. igraph</h3>
+<ol type="i">
+<li>Create igraph</li>
+<li>Inspect Edges and Vertices of net1 object ii.Inspect the igraph
+visually.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Create network</span>
+<span class='va'>net1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html'>graph_from_data_frame</a></span><span class='op'>(</span>d <span class='op'>=</span> <span class='va'>edges</span>, vertices <span class='op'>=</span> <span class='va'>nodes</span>, directed <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol type="i">
+<li>The edges of the “net” object
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/igraph/man/E.html'>E</a></span><span class='op'>(</span><span class='va'>net1</span><span class='op'>)</span>       <span class='co'># The edges of the "net" object</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<pre><code>+ 115/115 edges from f4684d2 (vertex names):
+ [1] 1 -&gt;83  2 -&gt;4   3 -&gt;9   3 -&gt;10  4 -&gt;7   5 -&gt;2   6 -&gt;13  7 -&gt;5  
+ [9] 8 -&gt;11  9 -&gt;10  4 -&gt;5   10-&gt;3   11-&gt;10  12-&gt;89  13-&gt;14  14-&gt;90 
+[17] 15-&gt;2   16-&gt;72  17-&gt;91  2 -&gt;92  18-&gt;93  19-&gt;1   5 -&gt;7   20-&gt;26 
+[25] 21-&gt;20  22-&gt;25  23-&gt;21  24-&gt;94  25-&gt;33  26-&gt;27  27-&gt;29  28-&gt;32 
+[33] 29-&gt;30  30-&gt;31  31-&gt;28  10-&gt;95  2 -&gt;71  32-&gt;66  16-&gt;51  2 -&gt;16 
+[41] 33-&gt;28  34-&gt;16  35-&gt;37  36-&gt;39  37-&gt;36  38-&gt;70  39-&gt;41  40-&gt;2  
+[49] 28-&gt;7   41-&gt;43  42-&gt;40  43-&gt;42  44-&gt;48  16-&gt;50  45-&gt;46  46-&gt;49 
+[57] 47-&gt;44  48-&gt;45  49-&gt;16  50-&gt;38  51-&gt;47  52-&gt;96  2 -&gt;75  53-&gt;97 
+[65] 6 -&gt;98  54-&gt;99  55-&gt;2   56-&gt;55  9 -&gt;59  57-&gt;100 58-&gt;3   22-&gt;4  
+[73] 14-&gt;95  11-&gt;9   59-&gt;53  60-&gt;10  61-&gt;101 62-&gt;63  63-&gt;2   64-&gt;102
++ ... omitted several edges</code></pre>
+</div>
+<ol start="2" type="i">
+<li>The vertices of the “net” object
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/igraph/man/V.html'>V</a></span><span class='op'>(</span><span class='va'>net1</span><span class='op'>)</span>       <span class='co'># The vertices of the "net" object</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<pre><code>+ 112/112 vertices, named, from f4684d2:
+  [1] 1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16 
+ [17] 17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32 
+ [33] 33  34  35  36  37  38  39  40  41  42  43  44  45  46  47  48 
+ [49] 49  50  51  52  53  54  55  56  57  58  59  60  61  62  63  64 
+ [65] 65  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80 
+ [81] 81  82  83  84  85  86  87  88  89  90  91  92  93  94  95  96 
+ [97] 97  98  99  100 101 102 103 104 105 106 107 108 109 110 111 112</code></pre>
+</div>
+<ol start="3" type="i">
+<li>Visualize the igraph</li>
+</ol>
+<ul>
+<li>We reduced the Bigrams to only include more than 35 mentions but the
+visualization is cluttered with the names of the bigrams and hard to
+read.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>edge.start</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/igraph/man/ends.html'>ends</a></span><span class='op'>(</span><span class='va'>net1</span>, es<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/pkg/igraph/man/E.html'>E</a></span><span class='op'>(</span><span class='va'>net1</span><span class='op'>)</span>, names<span class='op'>=</span><span class='cn'>F</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>]</span>
+
+<span class='va'>edge.col</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/igraph/man/V.html'>V</a></span><span class='op'>(</span><span class='va'>net1</span><span class='op'>)</span><span class='op'>$</span><span class='va'>color</span><span class='op'>[</span><span class='va'>edge.start</span><span class='op'>]</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>net1</span>, edge.color<span class='op'>=</span><span class='va'>edge.col</span>, edge.curved<span class='op'>=</span><span class='fl'>.1</span><span class='op'>)</span> 
+</code></pre>
+</div>
+</details>
+<p><img src="bigrams-of-lms_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
+</div>
+<h3 id="c.-convert-to-table-graph-class">4c. Convert to Table Graph
+class</h3>
+<ol type="i">
+<li>Inspect class() of object networks.</li>
+<li>Convert to table graph.</li>
+</ol>
+<p>+We can see that net1 is a class of igraph. TO go further we need to
+change to table graph class, this will add a weight column. Second, we
+will visualize our added weight column.</p>
+<ol type="i">
+<li>net1 class
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#check class</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>net1</span><span class='op'>)</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<pre><code>[1] &quot;igraph&quot;</code></pre>
+</div>
+<ol start="2" type="i">
+<li>Convert to table graph and inspect class.
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#update to table graph for weight</span>
+<span class='va'>net2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tidygraph.data-imaginist.com/reference/tbl_graph.html'>as_tbl_graph</a></span><span class='op'>(</span><span class='va'>net1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>net2</span><span class='op'>)</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<pre><code>[1] &quot;tbl_graph&quot; &quot;igraph&quot;   </code></pre>
+</div>
+<ol start="3" type="i">
+<li>Visualize the table graph with weight
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggraph.data-imaginist.com/reference/ggraph.html'>ggraph</a></span><span class='op'>(</span><span class='va'>net2</span>, layout <span class='op'>=</span> <span class='st'>"fr"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_node_point.html'>geom_node_point</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_edge_link.html'>geom_edge_link</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='va'>weight</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/theme_graph.html'>theme_graph</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<p><img src="bigrams-of-lms_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
+</div>
+<h3 id="d.-describe-the-network-mathematically">4d. Describe the Network
+Mathematically</h3>
+<ol type="a">
+<li>Network Size</li>
+<li>Centrality</li>
+<li>Density</li>
+<li>Reciprocity</li>
+<li>Transitivity</li>
+<li>Diameter and Density</li>
+<li>Mean</li>
+<li>Hubs and Authorities</li>
+</ol>
+<h4 id="a.-network-size">a. Network Size</h4>
+<p>The size of a network centers around the number of nodes and edges in
+a network. Here we can see: - i. number of <em>vertices is 112</em>. -
+ii. number of <em>edges is 115</em>.</p>
+<ol type="i">
+<li>number of vertices
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#number of vertices</span>
+<span class='fu'><a href='https://rdrr.io/pkg/igraph/man/gorder.html'>gorder</a></span><span class='op'>(</span><span class='va'>net2</span><span class='op'>)</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<pre><code>[1] 112</code></pre>
+</div>
+<ol start="2" type="i">
+<li>number of edges
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#number of edges</span>
+<span class='fu'><a href='https://rdrr.io/pkg/igraph/man/gsize.html'>gsize</a></span><span class='op'>(</span><span class='va'>net2</span><span class='op'>)</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<pre><code>[1] 115</code></pre>
+</div>
+<h4 id="b.-centrality">b. Centrality</h4>
+<p>Degree measures the extent to which relations are focused on one or a
+small set of actors. Degree refers to the number of ties an actor either
+sends (out-degree), receives (in-degree), or in the case of a
+non-directed network or both sent and received in a directed network,
+simply just “degree” for all actors to which one is connected.</p>
+<ul>
+<li><ol type="i">
+<li><em>All centrality Score of 0.054</em>.</li>
+</ol></li>
+<li><ol start="2" type="i">
+<li><em>In-degree centrality score of 0.072</em>.</li>
+</ol></li>
+<li><ol start="3" type="i">
+<li><em>Out-degree centrality score of 0.036</em>.</li>
+</ol></li>
+</ul>
+<p>The Bigram network seems to have a very decentralize graph, slightly
+more centralized around in-degree.</p>
+<ol type="i">
+<li>Calculate “all” degree centrality score and run centrality - “all”
+and add to out network
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#calculate all-degree score</span>
+<span class='fu'><a href='https://rdrr.io/pkg/igraph/man/centr_degree.html'>centr_degree</a></span><span class='op'>(</span><span class='va'>net2</span>, mode <span class='op'>=</span> <span class='st'>"all"</span><span class='op'>)</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<pre><code>$res
+  [1]  2 14  5  4  4  2  6  1  7  8  4  1  2  3  2  8  2  1  1  2  2
+ [22]  2  1  1  2  2  2  4  2  2  2  2  2  1  2  2  2  2  2  2  2  2
+ [43]  2  2  2  2  2  2  2  2  2  1  5  1  2  1  2  1  2  2  1  1  2
+ [64]  1  2  2  2  2  2  2  3  2  1  1  2  1  2  3  2  2  1  2  2  1
+ [85]  1  2  1  1  1  1  1  1  1  2  2  1  1  1  1  1  1  1  1  1  1
+[106]  1  1  1  1  1  1  1
+
+$centralization
+[1] 0.05429754
+
+$theoretical_max
+[1] 24642</code></pre>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#activate the actors degree</span>
+<span class='va'>net2</span> <span class='op'>&lt;-</span> <span class='va'>net2</span> |&gt;
+  <span class='fu'><a href='https://tidygraph.data-imaginist.com/reference/activate.html'>activate</a></span><span class='op'>(</span><span class='va'>nodes</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>degree <span class='op'>=</span> <span class='fu'><a href='https://tidygraph.data-imaginist.com/reference/centrality.html'>centrality_degree</a></span><span class='op'>(</span>mode <span class='op'>=</span> <span class='st'>"all"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="2" type="i">
+<li>Calculate “in” degree centrality score and run centrality - “in” and
+add to out network
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#calculate in-degree score</span>
+<span class='fu'><a href='https://rdrr.io/pkg/igraph/man/centr_degree.html'>centr_degree</a></span><span class='op'>(</span><span class='va'>net2</span>, mode <span class='op'>=</span> <span class='st'>"in"</span><span class='op'>)</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<pre><code>$res
+  [1] 1 9 3 2 2 0 3 0 3 4 2 0 1 1 0 3 1 0 0 1 1 0 0 0 1 1 1 2 1 1 1 1
+ [33] 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 2 0 1 0 1 0 1 1 0 0 1 0
+ [65] 1 1 1 1 1 1 2 1 0 0 1 0 1 2 1 1 0 1 1 0 0 1 0 0 1 1 1 1 1 2 2 1
+ [97] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+
+$centralization
+[1] 0.07183076
+
+$theoretical_max
+[1] 12432</code></pre>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#activate the actors degree</span>
+<span class='va'>net2</span> <span class='op'>&lt;-</span> <span class='va'>net2</span> |&gt;
+  <span class='fu'><a href='https://tidygraph.data-imaginist.com/reference/activate.html'>activate</a></span><span class='op'>(</span><span class='va'>nodes</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>degree <span class='op'>=</span> <span class='fu'><a href='https://tidygraph.data-imaginist.com/reference/centrality.html'>centrality_degree</a></span><span class='op'>(</span>mode <span class='op'>=</span> <span class='st'>"in"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="3" type="i">
+<li>Calculate “out” degree centrality score and Run centrality - “out”
+and add to out network.
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#calculate out-degree score</span>
+<span class='fu'><a href='https://rdrr.io/pkg/igraph/man/centr_degree.html'>centr_degree</a></span><span class='op'>(</span><span class='va'>net2</span>, mode <span class='op'>=</span> <span class='st'>"out"</span><span class='op'>)</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<pre><code>$res
+  [1] 1 5 2 2 2 2 3 1 4 4 2 1 1 2 2 5 1 1 1 1 1 2 1 1 1 1 1 2 1 1 1 1
+ [33] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 3 1 1 1 1 1 1 1 1 1 1 1
+ [65] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0
+ [97] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+$centralization
+[1] 0.03579472
+
+$theoretical_max
+[1] 12432</code></pre>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#activate the actors degree</span>
+<span class='va'>net2</span> <span class='op'>&lt;-</span> <span class='va'>net2</span> |&gt;
+  <span class='fu'><a href='https://tidygraph.data-imaginist.com/reference/activate.html'>activate</a></span><span class='op'>(</span><span class='va'>nodes</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>degree <span class='op'>=</span> <span class='fu'><a href='https://tidygraph.data-imaginist.com/reference/centrality.html'>centrality_degree</a></span><span class='op'>(</span>mode <span class='op'>=</span> <span class='st'>"out"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="4" type="i">
+<li>Visualize Centrality degree
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#Inspect degree visually</span>
+<span class='fu'><a href='https://ggraph.data-imaginist.com/reference/ggraph.html'>ggraph</a></span><span class='op'>(</span><span class='va'>net2</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_node_point.html'>geom_node_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='va'>degree</span>, color <span class='op'>=</span> <span class='va'>degree</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_edge_link.html'>geom_edge_link</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>weight</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/theme_graph.html'>theme_graph</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<p><img src="bigrams-of-lms_files/figure-html5/unnamed-chunk-19-1.png" width="624" /></p>
+</div>
+<h4 id="c.-density">c. Density</h4>
+<p>We can see that we have a very low <em>density at 0.0093</em>. The
+closer this number is to 1.0, the denser the network. It appears that
+out network does not have very many ties.</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#calculate edge density</span>
+<span class='fu'><a href='https://rdrr.io/pkg/igraph/man/edge_density.html'>graph.density</a></span><span class='op'>(</span><span class='va'>net2</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<pre><code>[1] 0.009250322</code></pre>
+</div>
+<h4 id="d.-reciprocity">d. Reciprocity</h4>
+<p>Reciprocity reveals the direction through which resources in networks
+flow between dyads and whether or not it flows in both directions.</p>
+<ol type="i">
+<li>Calculate reciprocity.</li>
+<li>View reciprocity between dyads.</li>
+<li>Inspect reciprocity Visually.</li>
+</ol>
+<p>The <em>reciprocity of 0.087</em> implies that response between
+actors with positive action is low.</p>
+<ol type="i">
+<li>Calculate reciprocity
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#calculate reciprocity</span>
+<span class='fu'><a href='https://rdrr.io/pkg/igraph/man/reciprocity.html'>reciprocity</a></span><span class='op'>(</span><span class='va'>net2</span><span class='op'>)</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<pre><code>[1] 0.08695652</code></pre>
+</div>
+<ol start="2" type="i">
+<li>View table graph reciprocity between actors.
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>net2</span> <span class='op'>&lt;-</span> <span class='va'>net2</span> |&gt;
+  <span class='fu'><a href='https://tidygraph.data-imaginist.com/reference/activate.html'>activate</a></span><span class='op'>(</span><span class='va'>edges</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>reciprocated <span class='op'>=</span> <span class='fu'><a href='https://tidygraph.data-imaginist.com/reference/edge_types.html'>edge_is_mutual</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>net2</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<pre><code># A tbl_graph: 112 nodes and 115 edges
+#
+# A directed simple graph with 13 components
+#
+# Edge Data: 115 x 4 (active)
+   from    to weight reciprocated
+  &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;lgl&gt;       
+1     1    83   1688 FALSE       
+2     2     4    309 FALSE       
+3     3     9    232 TRUE        
+4     3    10    187 TRUE        
+5     4     7    182 FALSE       
+6     5     2    170 FALSE       
+# ... with 109 more rows
+#
+# Node Data: 112 x 3
+  name  label  degree
+  &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
+1 1     google      1
+2 2     canvas      5
+3 3     essay       2
+# ... with 109 more rows</code></pre>
+</div>
+<ol start="3" type="i">
+<li>Visualize the reciprocity
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggraph.data-imaginist.com/reference/ggraph.html'>ggraph</a></span><span class='op'>(</span><span class='va'>net2</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_node_point.html'>geom_node_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='va'>degree</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_edge_link.html'>geom_edge_link</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>reciprocated</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/theme_graph.html'>theme_graph</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<p><img src="bigrams-of-lms_files/figure-html5/unnamed-chunk-23-1.png" width="624" /></p>
+</div>
+<h4 id="e.-transitivity">e. Transitivity</h4>
+<p>Transitivity focuses on triads, or any “triple” of actors.
+Transitivity is connected to actors’ tendencies to divide into exclusive
+subgroups or cluster over time, especially around positive relations
+such as friendship.</p>
+<p><em>Transitivity of 0.105</em></p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#calculate transitivity</span>
+<span class='fu'><a href='https://rdrr.io/pkg/igraph/man/transitivity.html'>transitivity</a></span><span class='op'>(</span><span class='va'>net2</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<pre><code>[1] 0.1052632</code></pre>
+</div>
+<h4 id="f.-diameter-and-distance">f. Diameter and Distance</h4>
+<p>A network diameter is the longest geodesic distance (length of the
+shortest path between two nodes) in the network.</p>
+<ol type="i">
+<li><p>View diameter.</p></li>
+<li><p>Inspect diameter visually.</p></li>
+<li><p>Diamter calculation</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+<p>Show code</p>
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>diam</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/igraph/man/diameter.html'>get_diameter</a></span><span class='op'>(</span><span class='va'>net2</span>, directed<span class='op'>=</span><span class='cn'>T</span><span class='op'>)</span>
+<span class='va'>diam</span>
+</code></pre>
+</div></li>
+</ol>
+</details>
+<pre><code>+ 4/112 vertices, named, from f4684d2:
+[1] 19  1   83  109</code></pre>
+</div>
+<ol start="2" type="i">
+<li>Inspect diameter visually.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>vcol</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"gray40"</span>, <span class='fu'><a href='https://rdrr.io/pkg/igraph/man/gorder.html'>vcount</a></span><span class='op'>(</span><span class='va'>net2</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>vcol</span><span class='op'>[</span><span class='va'>diam</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"gold"</span>
+
+<span class='va'>ecol</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"gray80"</span>, <span class='fu'><a href='https://rdrr.io/pkg/igraph/man/gsize.html'>ecount</a></span><span class='op'>(</span><span class='va'>net2</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>ecol</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/pkg/igraph/man/E.html'>E</a></span><span class='op'>(</span><span class='va'>net2</span>, path<span class='op'>=</span><span class='va'>diam</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"orange"</span> 
+
+<span class='co'># E(net, path=diam) finds edges along a path, here 'diam'</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>net2</span>, vertex.label<span class='op'>=</span><span class='cn'>NA</span>, vertex.color<span class='op'>=</span><span class='va'>vcol</span>, edge.color<span class='op'>=</span><span class='va'>ecol</span>, edge.arrow.mode<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<p><img src="bigrams-of-lms_files/figure-html5/unnamed-chunk-26-1.png" width="624" /></p>
+</div>
+<h4 id="g.-mean-distance">g. Mean Distance</h4>
+<p>The average path length, measures the mean distance between all pairs
+of actors in the network.</p>
+<ol type="i">
+<li>Calculate mean distance</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#calculate the mean distance</span>
+<span class='fu'><a href='https://rdrr.io/pkg/igraph/man/distances.html'>mean_distance</a></span><span class='op'>(</span><span class='va'>net2</span><span class='op'>)</span> 
+</code></pre>
+</div>
+</details>
+<pre><code>[1] 6.883668</code></pre>
+</div>
+<h4 id="h.-hubs-and-authorities">h. Hubs and Authorities</h4>
+<p>Hubs expect to contain large number of outgoing links and authorities
+get many incoming links from hubs.</p>
+<p>The graphical visualization of our network seems to have very little
+coming into authorities from the Hubs.</p>
+<ol type="i">
+<li>Inspect Hubs and Authorities visually.
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r">
+<code class="sourceCode r"><span class="va">hs</span> <span
+class="op">&lt;-</span> <span
+class="fu"><a href='https://rdrr.io/pkg/igraph/man/hub_score.html'>hub_score</a></span><span
+class="op">(</span><span class="va">net2</span>, weights<span
+class="op">=</span><span class="cn">NA</span><span
+class="op">)</span><span class="op">$</span><span
+class="va">vector</span></li>
+</ol>
+<p><span class="va">as</span> <span class="op">&lt;-</span> <span
+class="fu"><a href='https://rdrr.io/pkg/igraph/man/authority_score.html'>authority_score</a></span><span
+class="op">(</span><span class="va">net2</span>, weights<span
+class="op">=</span><span class="cn">NA</span><span
+class="op">)</span><span class="op">$</span><span
+class="va">vector</span></p>
+<p><span
+class="fu"><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span
+class="op">(</span>mfrow<span class="op">=</span><span
+class="fu"><a href='https://rdrr.io/r/base/c.html'>c</a></span><span
+class="op">(</span><span class="fl">1</span>,<span
+class="fl">2</span><span class="op">)</span><span
+class="op">)</span></p>
+<p><span
+class="fu"><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span
+class="op">(</span><span class="va">net2</span>, vertex.label<span
+class="op">=</span><span class="cn">NA</span>, vertex.size<span
+class="op">=</span><span
+class="va">hs</span><span class='op'>*</span><span class="fl">50</span>,
+main<span class="op">=</span><span class="st">“Hubs”</span><span
+class="op">)</span></p>
+<span
+class="fu"><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span
+class="op">(</span><span class="va">net2</span>, vertex.label<span
+class="op">=</span><span class="cn">NA</span>, vertex.size<span
+class="op">=</span><span
+class="va">as</span><span class='op'>*</span><span class="fl">30</span>,
+main<span class="op">=</span><span class="st">“Authorities”</span><span
+class="op">)</span> </code>
+</pre>
+</div>
+</details>
+<p><img src="bigrams-of-lms_files/figure-html5/unnamed-chunk-28-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># compute degree as node size</span>
+<span class='fu'><a href='https://rdrr.io/pkg/igraph/man/V.html'>V</a></span><span class='op'>(</span><span class='va'>net2</span><span class='op'>)</span><span class='op'>$</span><span class='va'>size</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sna/man/degree.html'>degree</a></span><span class='op'>(</span><span class='va'>net2</span><span class='op'>)</span>
+<span class='va'>net2</span>
+</code></pre>
+</div>
+</details>
+<pre><code># A tbl_graph: 112 nodes and 115 edges
+#
+# A directed simple graph with 13 components
+#
+# Edge Data: 115 x 4 (active)
+   from    to weight reciprocated
+  &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;lgl&gt;       
+1     1    83   1688 FALSE       
+2     2     4    309 FALSE       
+3     3     9    232 TRUE        
+4     3    10    187 TRUE        
+5     4     7    182 FALSE       
+6     5     2    170 FALSE       
+# ... with 109 more rows
+#
+# Node Data: 112 x 4
+  name  label  degree  size
+  &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1 1     google      1     2
+2 2     canvas      5    14
+3 3     essay       2     5
+# ... with 109 more rows</code></pre>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggraph.data-imaginist.com/reference/ggraph.html'>ggraph</a></span><span class='op'>(</span><span class='va'>net2</span>,layout <span class='op'>=</span> <span class='st'>"stress"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_edge_link.html'>geom_edge_link0</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='op'>)</span>,edge_colour <span class='op'>=</span> <span class='st'>"grey66"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_node_point.html'>geom_node_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='va'>degree</span><span class='op'>)</span>,shape <span class='op'>=</span> <span class='fl'>21</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_node_text.html'>geom_node_text</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>filter <span class='op'>=</span> <span class='va'>size</span> <span class='op'>&gt;=</span> <span class='fl'>26</span>, label <span class='op'>=</span> <span class='va'>name</span><span class='op'>)</span>,
+                 family<span class='op'>=</span><span class='st'>"serif"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_size.html'>scale_size</a></span><span class='op'>(</span>range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>6</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/theme_graph.html'>theme_graph</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position <span class='op'>=</span> <span class='st'>"right"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='st'>"# Connections"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"District Administrator Network"</span>, subtitle <span class='op'>=</span> 
+       <span class='st'>"Connections &amp; Key Actors"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<p><img src="bigrams-of-lms_files/figure-html5/unnamed-chunk-29-1.png" width="624" /></p>
+</div>
+<h2 id="communicate">5. COMMUNICATE</h2>
+<ul>
+<li><p><strong>Purpose - </strong> The purpose of the case study is to
+look at the **social network* of Bigrams from a Tweet data set pulled
+previously on Sentiment for four popular Learning Management
+Systems(LMS); Google Classroom, Canvas, Moodle, and Blackboard.
+Understanding how information is shared within the network is important
+to understand for why a LMS may be mentioned more than another LMS on
+Twitter.</p></li>
+<li><p><strong>Methods -</strong> For this independent analysis I
+explored tweet Bigrams, Social Networks, and Network Analysis
+Mathematically.</p></li>
+<li><p><strong>Findings -</strong> The LMS, Google Classroom, Canvas,
+Moodle, and Blackboard did not seems to have a very good flow of
+information.</p></li>
+<li><p>The words are paired by co-occurrence. by networks. ++ Canvas
+being a top network.</p></li>
+<li><p>A slightly higher In-Degree connection.</p></li>
+<li><p>The authorities did not receive very much coming from the
+Hubs.</p></li>
+<li><p><strong>Discussion -</strong> Bigrams network might show the
+general idea of the content of the information gathered in twitter
+posts. Insights from a case study like this may be used to guide Public
+and Private organizations looking to monitor how information regarding
+the product is transmitted. A Bigram analysis from collected Tweets may
+show terms that may not be identical to other analysis. We did not
+include retweets within out data. I suggest leaving retweets in and
+evaluating 2 LMS at a time to see if the passing of information within a
+network is higher.</p></li>
+</ul>
+<h5 id="references">References:</h5>
+<p>Hachaj, T., &amp; Ogiela, M. R. (2018, October). What Can Be Learned
+from Bigrams Analysis of Messages in Social Network?. In <em>2018 11th
+International Congress on Image and Signal Processing, BioMedical
+Engineering and Informatics (CISP-BMEI)</em> (pp. 1-4). IEEE.</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

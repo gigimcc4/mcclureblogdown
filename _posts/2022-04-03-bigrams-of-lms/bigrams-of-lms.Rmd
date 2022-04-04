@@ -1,0 +1,542 @@
+---
+title: "Social Network Analysis of Tweet Bigrams from Sentiment of four popular Learning Management Systems"
+description: |
+  Early work using ggraph and igraph
+author:
+  - name: Jeanne McClure
+preview: centrality.png
+date: 2022-02-10
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## 1. PURPOSE
+
+### 1a. Motivation and Focus
+
+We completed a *sentiment analysis* on four popular ***Learning Management Systems (LMS)**; Google Classroom, Canvas, Moodle, and Blackboard, in a previous case study. We evaluated emotions and sentiment towards each LMS by assessing the most common uniwords. We evaluated strengths and weaknesses by pulling public opinion from the Twitter Resting API.
+
+We will evaluate connections between the most frequent combination of words (Bigrams) through Social Network Analysis. Here we'll explore this option for the tweets made in English for the 4 LMS previously observed.
+
+**Guiding Questions:**
+
+1. Are there networks from the co-occurrence of Bigrams?
+2. What does the mathematical analysis of the Bigram network tell us?
+
+
+### 1b. Load Libraries
+
+Let's first load our libraries to read in packages that we will use to answer our questions. We will also create a function called replace_reg() by looking for and deleting strings (nonsense words), numbers, and other manual stop characters and numbers. 
+
+```{r, message = FALSE}
+
+library(tidytext)
+library(tidyverse)
+library(network)
+library(sna)
+library(visNetwork)
+library(threejs)
+library(ndtv)
+library(qgraph)
+library(splitstackshape)
+library(tidyr)
+library(stringr)
+library(readxl)
+library(readr)
+
+# For visualizations
+library(vtree)
+library(igraph)
+library(ggraph)
+library(tidygraph)
+library(networkD3)
+library(ggplot2)
+
+# regex for parsing tweets
+replace_reg <- "https?://[^\\s]+|&amp;|&lt;|&gt;|&d2l;|&aristotlemrs;|&aleks;|\bRT\\b"
+
+# Custom Color Palette
+my_colors <- c("#05A4C0", "#85CEDA", "#D2A7D8", "#A67BC5", "#BB1C8B", "#8D266E")
+
+```
+
+## 2. METHOD
+
+Our initial read-in data frame includes **4521 tweets ** objects in the text to evaluate. After tokenizing the Bigrams and restructuring the data objects, we will include Bigrams mentioned more than five times. Once tidyed, the data consists of **1407 bigrams** left to evaluate with a  social network approach.
+
+### 2a. Read and Restructure Data
++ Read in the previously evaluated LMS data for Google Classroom tweets, Blackboard tweets, Canvas tweets, and Moodle tweets. 
++ Subset columns to pull only index, lms and text columns.
++ Visualize the initial number of tweets for each LMS. 
+
+```{r, message = FALSE}
+tweets <- read_excel("data/tweets.xlsx")
+
+#select lms, text and index, grouping by lms
+tweets_data2 <- tweets %>% 
+  select(c('index', 'lms', 'text')) %>% 
+  group_by(lms) %>%
+  na.omit()
+
+
+vtree(tweets_data2, "lms", horiz=FALSE, palette = 4, sortfill = TRUE, title="Initial LMS Tweets Data")
+```
+
+### 2b. Tidytext and Initiate Bigram
+
++ Using the *tidytext and dplyr packages* we split the text into tokens creating a table with two-tokens-per-row. The token is under a column called "bigram."
++ Subset the bigram columns by separating and adding two columns "first" and "second.""
++ Remove stop words and manual stop words using our str_detect() dictionary and remove words that are not letter strings.
++ Group our lms_bigram() to count up the bigrams, summarize keeping only those that appear more than 5 times.
++ Visualizing the new numbers for each LMS.
+
+```{r, message=FALSE}
+# split into word pairs
+lms_bigrams <- tweets_data2 %>% 
+  mutate(text = str_replace_all(text, replace_reg, "")) %>%
+  unnest_tokens(bigram, text, token = "ngrams", n = 2)
+
+# remove stop words
+lms_bigrams <- lms_bigrams %>%
+  separate(bigram, into = c("first","second"), sep = " ", remove = FALSE) %>%
+  anti_join(stop_words, by = c("first" = "word")) %>%
+  anti_join(stop_words, by = c("second" = "word")) %>%
+  filter(str_detect(first, "[a-z]") &
+         str_detect(second, "[a-z]"))
+
+#count up new birgams and create a new column called n only keep more than 5 counts
+lms_bigrams_count <- lms_bigrams %>%
+  group_by(lms, bigram, first, second)%>%
+  summarise(n=n())%>%
+  filter(n >= 5)%>%
+  arrange(-n)%>%
+  ungroup()
+
+#visualize new number of rows (previously counting tweets)
+vtree(lms_bigrams_count, "lms", horiz=FALSE, palette = 4, sortfill = TRUE, title="Bigram LMS Tweets Data")
+```
+
+
+## 3. EXPLORE
+
+### 3a. Subset Coloumns and visualize Bigrams
+
++ Select first, second and n columns create lms_bigram_tble data frame to use later in the Social Network Analysis.
++ Visually inspect Bigrams mentioned more than 35 times through an igraph to observe any communities in the network. 
+
+```{r, message=FALSE}
+# Rename and reorder columns (so we can make the graphs more easily)
+lms_bigram_tbl <- lms_bigrams_count %>%
+  dplyr::select(c('first','second', 'n'))
+
+
+bigram_graph <- lms_bigram_tbl %>%
+  filter(n > 35) %>%
+  graph_from_data_frame()
+
+
+set.seed(123)
+
+a <- grid::arrow(type = "closed", length = unit(.15, "inches"))
+
+ggraph(bigram_graph, layout = "fr") +
+    geom_edge_link(aes(edge_alpha = n), show.legend = FALSE, arrow = a) +
+    geom_node_point(color = "lightblue", size = 5) +
+    geom_node_text(aes(label = name), vjust = 1, hjust = 1) +
+    theme_void()
+
+```
+
+## 4. MODEL
+
+To evaluate Social Network for Bigrams we will create a igraph and table graph class network. This will easily allow for visualizing the connections and explaining the network mathmatically.
+
+
+### 4a. Edges and Nodes
+
+Nodes are the unique words - each word has an identification ID
+edges are the bigrams, meaning that they show how frequently we find a combination of 2 words (represented by their unique ID).
+
+
++ Create a source for the first word of the bigram
++ Create a destination for the second word of the bigram
++ Create Nodes
++ Create Edges
++ Select only to, from and weight
++ Inspect i. head of Node and ii. head of Edges and save for later use.
+
+
+```{r, message=FALSE}
+
+#filter to Bigrams that are mentioned more than 35 times.
+lms_df <- lms_bigram_tbl %>%
+  filter(n > 35) 
+# Distinct first (part of bigram)
+sources <- lms_df%>% 
+                distinct(first) %>% 
+                rename(label = first)
+
+# Distinct second (part of bigram)
+destinations <- lms_df %>% 
+                    distinct(second) %>% 
+                    rename(label = second)
+
+#NODES AND EDGES BELOW:
+
+# ----- NODES -----
+# Unique Items + create unique ID
+nodes <- full_join(sources, destinations, by="label") %>% rowid_to_column("id")
+
+# ----- EDGES -----
+# Adds unique ID of Item 1 to data
+edges <- lms_df %>% 
+            left_join(nodes, by = c("first" = "label")) %>% 
+            rename(from = id)
+
+# Adds unique ID of Item 2 to data
+edges <- edges %>% 
+            left_join(nodes, by = c("second" = "label")) %>% 
+            rename(to = id) %>% 
+            rename(weight = n)
+
+# Select only From | To | Weight (frequency)
+edges <- edges %>% select(from, to, weight)
+```
+
+i. Inspect head of node
+```{r, message - FALSE}
+# inspect head of nodes and edges
+nodes %>% 
+  head(5)
+```
+
+ii. Inspect head of edges
+```{r, message = FALSE}
+edges %>% 
+  head(5)
+
+
+# Export the nodes & edges data as we may want to use it in the future.
+write.csv(nodes,"data/nodes.csv", row.names = FALSE)
+write.csv(edges,"data/edges.csv", row.names = FALSE)
+
+```
+
+### 4b. igraph
+
+i. Create igraph 
+ii. Inspect Edges and Vertices of net1 object
+ii.Inspect the igraph visually. 
+
+```{r, message = FALSE}
+# Create network
+net1 <- graph_from_data_frame(d = edges, vertices = nodes, directed = TRUE)
+```
+
+i. The edges of the "net" object
+```{r, message = FALSE}
+E(net1)       # The edges of the "net" object
+
+```
+
+ii. The vertices of the "net" object
+```{r, message = FALSE}
+V(net1)       # The vertices of the "net" object
+
+```
+
+
+iii. Visualize the igraph
+
++ We reduced the Bigrams to only include more than 35 mentions but the visualization is cluttered with the names of the bigrams and hard to read. 
+
+```{r, message=FALSE}
+
+edge.start <- ends(net1, es=E(net1), names=F)[,1]
+
+edge.col <- V(net1)$color[edge.start]
+
+plot(net1, edge.color=edge.col, edge.curved=.1) 
+```
+
+### 4c.  Convert to Table Graph class
+
+i.  Inspect class() of object networks.
+ii. Convert to table graph.
+
++We can see that net1 is a class of igraph. TO go further we need to change to table graph class, this will add a weight column. Second, we will visualize our added weight column.
+
+i. net1 class 
+```{r, message = FALSE}
+#check class
+class(net1)
+```
+
+ii. Convert to table graph and inspect class.
+```{r, message=FALSE}
+#update to table graph for weight
+net2 <- as_tbl_graph(net1)
+class(net2)
+
+```
+
+iii. Visualize the table graph with weight
+```{r, message = FALSE}
+ggraph(net2, layout = "fr") +
+  geom_node_point(size = 3) +
+  geom_edge_link(aes(colour = weight)) +
+  theme_graph()
+
+```
+
+### 4d. Describe the Network Mathematically
+a. Network Size
+b. Centrality
+c. Density
+d. Reciprocity
+e. Transitivity
+f. Diameter and Density
+g. Mean
+h. Hubs and Authorities
+
+
+
+#### a. Network Size
+The size of a network centers around the number of nodes and edges in a network. Here we can see:
+  - i. number of *vertices is 112*.
+  - ii. number of *edges is 115*.
+
+i. number of vertices
+```{r, message = FALSE}
+#number of vertices
+gorder(net2)
+```
+
+ii. number of edges
+```{r, message = FALSE}
+#number of edges
+gsize(net2)
+```
+
+
+#### b. Centrality
+Degree measures the extent to which relations are focused on one or a small set of actors. Degree refers to the number of ties an actor either sends (out-degree), receives (in-degree), or in the case of a non-directed network or both sent and received in a directed network, simply just “degree” for all actors to which one is connected.
+
+  - i. *All centrality Score of 0.054*.
+  - ii. *In-degree centrality score of 0.072*.
+  - iii. *Out-degree centrality score of 0.036*.
+
+The Bigram network seems to have a very decentralize graph, slightly more centralized around in-degree.
+
+i. Calculate "all" degree centrality score and run centrality - "all" and add to out network
+```{r, message=FALSE}
+#calculate all-degree score
+centr_degree(net2, mode = "all")
+
+#activate the actors degree
+net2 <- net2 |>
+  activate(nodes) |>
+  mutate(degree = centrality_degree(mode = "all"))
+
+```
+
+ii. Calculate "in" degree centrality score and run centrality - "in" and add to out network
+```{r, message=FALSE}
+#calculate in-degree score
+centr_degree(net2, mode = "in")
+
+#activate the actors degree
+net2 <- net2 |>
+  activate(nodes) |>
+  mutate(degree = centrality_degree(mode = "in"))
+
+```
+
+iii. Calculate "out" degree centrality score and Run centrality - "out" and add to out network.
+```{r, message=FALSE}
+#calculate out-degree score
+centr_degree(net2, mode = "out")
+
+#activate the actors degree
+net2 <- net2 |>
+  activate(nodes) |>
+  mutate(degree = centrality_degree(mode = "out"))
+
+```
+
+iv. Visualize Centrality degree
+```{r, message= FALSE}
+#Inspect degree visually
+ggraph(net2) +
+  geom_node_point(aes(size = degree, color = degree)) +
+  geom_edge_link(aes(color = weight)) +
+  theme_graph()
+```
+
+
+#### c. Density
+We can see that we have a very low *density at 0.0093*. The closer this number is to 1.0, the denser the network. It appears that out network does not have very many ties.
+
+```{r,message = FALSE}
+#calculate edge density
+graph.density(net2)
+```
+
+#### d. Reciprocity
+
+Reciprocity reveals the direction through which resources in networks flow between dyads and whether or not it flows in both directions. 
+
+i. Calculate reciprocity.
+ii. View reciprocity between dyads.
+iii. Inspect reciprocity Visually.
+
+The *reciprocity of 0.087* implies that response between actors with positive action is low.
+
+i. Calculate reciprocity
+```{r, message = FALSE}
+#calculate reciprocity
+reciprocity(net2)
+
+```
+
+ii. View table graph reciprocity between actors.
+```{r, message=FALSE}
+net2 <- net2 |>
+  activate(edges) |>
+  mutate(reciprocated = edge_is_mutual())
+net2
+```
+
+iii. Visualize the reciprocity
+```{r, message=FALSE}
+ggraph(net2) +
+  geom_node_point(aes(size = degree)) +
+  geom_edge_link(aes(color = reciprocated)) +
+  theme_graph()
+
+
+```
+
+#### e. Transitivity
+
+Transitivity focuses on triads, or any “triple” of actors. Transitivity is connected to actors’ tendencies to divide into exclusive subgroups or cluster over time, especially around positive relations such as friendship.
+
+*Transitivity of 0.105*
+
+```{r, message=FALSE}
+#calculate transitivity
+transitivity(net2)
+
+```
+
+#### f. Diameter and Distance
+
+A network diameter is the longest geodesic distance (length of the shortest path between two nodes) in the network.
+
+i.  View diameter.
+ii. Inspect diameter visually.
+
+i. Diamter calculation
+```{r}
+diam <- get_diameter(net2, directed=T)
+diam
+```
+
+ii. Inspect diameter visually.
+
+```{r}
+vcol <- rep("gray40", vcount(net2))
+
+vcol[diam] <- "gold"
+
+ecol <- rep("gray80", ecount(net2))
+
+ecol[E(net2, path=diam)] <- "orange" 
+
+# E(net, path=diam) finds edges along a path, here 'diam'
+
+plot(net2, vertex.label=NA, vertex.color=vcol, edge.color=ecol, edge.arrow.mode=0)
+
+```
+
+#### g. Mean Distance
+
+The average path length, measures the mean distance between all pairs of actors in the network.
+
+i. Calculate mean distance
+
+```{r, message = FALSE}
+#calculate the mean distance
+mean_distance(net2) 
+```
+
+
+#### h. Hubs and Authorities
+
+Hubs expect to contain large number of outgoing links and authorities get many incoming links from hubs.
+
+The graphical visualization of our network seems to have very little coming into authorities from the Hubs.
+
+i. Inspect Hubs and Authorities visually.
+```{r}
+hs <- hub_score(net2, weights=NA)$vector
+
+as <- authority_score(net2, weights=NA)$vector
+
+
+
+par(mfrow=c(1,2))
+
+ plot(net2, vertex.label=NA, vertex.size=hs*50, main="Hubs")
+
+ plot(net2, vertex.label=NA, vertex.size=as*30, main="Authorities")
+
+```
+
+
+```{r}
+# compute degree as node size
+V(net2)$size <- degree(net2)
+net2
+
+ggraph(net2,layout = "stress") +
+  geom_edge_link0(aes(),edge_colour = "grey66") +
+  geom_node_point(aes(size = degree),shape = 21) +
+  geom_node_text(aes(filter = size >= 26, label = name),
+                 family="serif") +
+  scale_size(range = c(1,6)) +
+  theme_graph() +
+  theme(legend.position = "right") +
+  labs(size = "# Connections") +
+  labs(title = "District Administrator Network", subtitle = 
+       "Connections & Key Actors")
+
+```
+
+## 5. COMMUNICATE
+
++ **Purpose - ** The purpose of the case study is to look at the **social network* of Bigrams from a Tweet data set pulled previously on Sentiment for four popular Learning Management Systems(LMS); Google Classroom, Canvas, Moodle, and Blackboard. Understanding how information is shared within the network is important to understand for why a LMS may be mentioned more than another LMS on Twitter.
+
++ **Methods -** For this independent analysis I explored tweet Bigrams, Social Networks, and Network Analysis Mathematically.
+
++ **Findings -** The LMS, Google Classroom, Canvas, Moodle, and Blackboard did not seems to have a very good flow of information. 
++ The words are paired by co-occurrence. by networks.
+++ Canvas being a top network.
++ A slightly higher In-Degree connection. 
++ The authorities did not receive very much coming from the Hubs.
+
++ **Discussion -** Bigrams network might show the general idea of the content of the information gathered in twitter  posts. Insights from a case study like this may be used to guide Public and Private organizations looking to monitor how information regarding the product is transmitted. A Bigram analysis from collected Tweets may show terms that may not be identical to other analysis. We did not include retweets within out data. I suggest leaving retweets in and evaluating 2 LMS at a time to see if the passing of information within a network is higher.
+
+##### References:
+
+Hachaj, T., & Ogiela, M. R. (2018, October). What Can Be Learned from Bigrams Analysis of Messages in Social Network?. In *2018 11th International Congress on Image and Signal Processing, BioMedical Engineering and Informatics (CISP-BMEI)* (pp. 1-4). IEEE.
+  
+
+
