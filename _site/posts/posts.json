@@ -83,5 +83,22 @@
     "preview": "posts/2022-04-03-soar-project/soarpict1.jpg",
     "last_modified": "2022-04-03T20:28:39-04:00",
     "input_file": {}
+  },
+  {
+    "path": "posts/2022-04-03-a-prediction-model/",
+    "title": "Do males outperform females in online STEM courses?",
+    "description": "Looking at data from five online STEM courses.",
+    "author": [
+      {
+        "name": "Jeanne McClure",
+        "url": {}
+      }
+    ],
+    "date": "2021-10-09",
+    "categories": [],
+    "contents": "\r\n\r\n\r\nShow code\r\n\r\nlibrary(tidyverse)\r\nlibrary(\"ggpubr\")\r\n\r\ndata_to_explore <- read_csv(\"data/data-to-explore.csv\")\r\n\r\ndata_to_viz <- data_to_explore %>%\r\n  select(subject, gender, proportion_earned) %>%  # reduced \r\n  mutate(subject = recode(subject, \r\n                          \"AnPhA\" = \"Anatomy\",\r\n                          \"BioA\" = \"Biology\", \r\n                          \"FrScA\" = \"Forensics\", \r\n                          \"OcnA\" =  \"Oceanography\", \r\n                          \"PhysA\" = \"Physics\")) %>%\r\n  mutate(grade = proportion_earned * 100) %>%\r\n  # filter(!is.na(gender)) %>%\r\n  na.omit() %>% # removed all NAs instead of just those for gender\r\n  group_by(subject, gender) %>% # grouped by subject and gender\r\n  summarise(grade = mean(grade), sd = sd(grade))# calculated mean and sd for grade and saved as grade again  \r\n\r\n  ggplot(data_to_viz, aes(x = subject, y = grade, \r\n                          fill = gender)) +\r\n  geom_bar(stat = \"identity\", \r\n           position = position_dodge()) +\r\n  geom_errorbar(aes(x = subject, ymin=grade-sd, ymax=grade+sd), width=0.4, \r\n                colour=\"black\", alpha=0.9, size=1.5)+\r\n  labs(title = \"Do Males out-preform Females in online STEM courses?\",\r\n       caption = \"Online STEM course performance, why is there still a gender gap?\",\r\n       y = \"Average Grade\",\r\n       x = \"Online STEM Course\")\r\n\r\n\r\n\r\n\r\nThe stereotypes about women in technical fields can linger with\r\ngender gaps in most science fields. Is it because males outpreform\r\nfemales in STEM courses? Collection data was obtained over four\r\nsemesters on five on-line STEM courses. Data was then computed into a\r\nstacked barplot looking at overal grade per course. NA’s were eliminated\r\nfrom the data. For each of five online STEM courses offered by the\r\nstatewide virtual public school from which this data was collected,\r\nfemales preformed higher in all STEM courses but Forensics.\r\n\r\n\r\n\r\n",
+    "preview": "posts/2022-04-03-a-prediction-model/stem.png",
+    "last_modified": "2022-04-03T21:42:38-04:00",
+    "input_file": {}
   }
 ]

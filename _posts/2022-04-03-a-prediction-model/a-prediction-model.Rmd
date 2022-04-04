@@ -1,0 +1,54 @@
+---
+title: "Do males outperform females in online STEM courses?"
+description: |
+  Looking at data from five online STEM courses.
+author:
+  - name: Jeanne McClure
+preview: stem.png
+date: 2021-10-09
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library("ggpubr")
+
+data_to_explore <- read_csv("data/data-to-explore.csv")
+
+data_to_viz <- data_to_explore %>%
+  select(subject, gender, proportion_earned) %>%  # reduced 
+  mutate(subject = recode(subject, 
+                          "AnPhA" = "Anatomy",
+                          "BioA" = "Biology", 
+                          "FrScA" = "Forensics", 
+                          "OcnA" =  "Oceanography", 
+                          "PhysA" = "Physics")) %>%
+  mutate(grade = proportion_earned * 100) %>%
+  # filter(!is.na(gender)) %>%
+  na.omit() %>% # removed all NAs instead of just those for gender
+  group_by(subject, gender) %>% # grouped by subject and gender
+  summarise(grade = mean(grade), sd = sd(grade))# calculated mean and sd for grade and saved as grade again  
+
+  ggplot(data_to_viz, aes(x = subject, y = grade, 
+                          fill = gender)) +
+  geom_bar(stat = "identity", 
+           position = position_dodge()) +
+  geom_errorbar(aes(x = subject, ymin=grade-sd, ymax=grade+sd), width=0.4, 
+                colour="black", alpha=0.9, size=1.5)+
+  labs(title = "Do Males out-preform Females in online STEM courses?",
+       caption = "Online STEM course performance, why is there still a gender gap?",
+       y = "Average Grade",
+       x = "Online STEM Course")
+
+```
+
+The stereotypes about women in technical fields can linger with gender gaps in most science fields. Is it because males outpreform females in STEM courses? Collection data was obtained over four semesters on five on-line STEM courses. Data was then computed into a stacked barplot looking at overal grade per course. NA's were eliminated from the data. For each of five online STEM courses offered by the statewide virtual public school from which this data was collected, females preformed higher in all STEM courses but Forensics. 
